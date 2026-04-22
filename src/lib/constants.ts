@@ -5,6 +5,8 @@
  * bare strings. What stays here is structural: URLs, enums, placeholders.
  */
 
+import type { StaticPathname } from "@/i18n/routing";
+
 export const SITE_CONFIG = {
   name: "AW AB",
   shortDescription: "Premium förpackningsbyrå i Sverige.",
@@ -38,13 +40,18 @@ export type ServiceKey = "boxes" | "bags" | "corporate" | "custom";
 
 export interface SubmenuItem {
   key: ServiceKey;
-  href: string;
+  href: StaticPathname;
 }
 
 export interface NavItem {
   key: NavKey;
-  href: string;
+  href: StaticPathname;
   submenu?: SubmenuItem[];
+}
+
+export interface LegalLinkItem {
+  key: "privacy" | "terms" | "cookies";
+  href: StaticPathname;
 }
 
 /**
@@ -55,11 +62,11 @@ export interface NavItem {
 export const NAVIGATION: {
   header: NavItem[];
   mobile: NavItem[];
-  cta: { key: NavKey; href: string };
+  cta: { key: NavKey; href: StaticPathname };
   footer: {
     services: SubmenuItem[];
     company: NavItem[];
-    legal: { key: string; href: string }[];
+    legal: LegalLinkItem[];
   };
 } = {
   header: [

@@ -63,7 +63,7 @@ export async function ServicesGrid() {
 }
 
 interface ServiceCardProps {
-  item: { key: ServiceKey; href: string };
+  item: { key: ServiceKey; href: import("@/i18n/routing").StaticPathname };
   index: number;
   label: string;
   description: string;

@@ -9,7 +9,7 @@ import { Link } from "@/i18n/navigation";
 import { Logo } from "@/components/shared/logo";
 import { LanguageSwitcher } from "./language-switcher";
 import { MobileMenu } from "./mobile-menu";
-import { NAVIGATION } from "@/lib/constants";
+import { NAVIGATION, type SubmenuItem } from "@/lib/constants";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -142,7 +142,7 @@ export function Header() {
 }
 
 interface ServicesDropdownProps {
-  submenu: { key: string; href: string }[];
+  submenu: SubmenuItem[];
   onPointerEnter: () => void;
   onPointerLeave: () => void;
   onNavigate: () => void;

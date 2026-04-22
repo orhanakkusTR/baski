@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
+import type { StaticPathname } from "@/i18n/routing";
 import { Container } from "@/components/shared/container";
 import { LanguageSwitcher } from "./language-switcher";
 import { NAVIGATION, SITE_CONFIG } from "@/lib/constants";
@@ -143,7 +144,7 @@ function FooterLink({
   href,
   children,
 }: {
-  href: string;
+  href: StaticPathname;
   children: React.ReactNode;
 }) {
   return (

@@ -142,3 +142,57 @@ Single source of truth for which build steps are complete. Update at the end of 
 - Full-page Lighthouse — perf/accessibility/SEO all 95+ (real-image replacement in ADIM 11 will affect LCP).
 
 **Up next:** ADIM 5 — About page (agency story, values, timeline, optional team).
+
+---
+
+## ADIM 5 — About Page ✅ 2026-04-22
+
+**Status:** Complete. `/sv/om-oss` and `/en/about` both render 200 with fully translated content; localized pathname routing wired for all future routes; tsc clean.
+
+**What was done:**
+
+### Localized pathnames (big structural change)
+Wired full `pathnames` map in `src/i18n/routing.ts`: every route the app links to now has a locale-aware slug. `/about` → `/sv/om-oss` · `/en/about`, `/services` → `/sv/tjanster`, `/portfolio` → `/sv/arbeten`, `/quote` → `/sv/offert`, `/contact` → `/sv/kontakt`, privacy/terms/cookies likewise. File-system routes stay at canonical English paths (e.g. `src/app/[locale]/about/page.tsx`); middleware rewrites the Swedish URL onto the canonical path. `<Link href="/about">` auto-renders the right per-locale URL.
+
+Added two exported helper types — `Pathname` (all routes including dynamic) and `StaticPathname` (excludes `/portfolio/[slug]` and other dynamic routes that need `{pathname, params}` object form when passed to `<Link>`).
+
+Ripple fixes from typing:
+- `src/lib/constants.ts` — NAVIGATION hrefs retyped `string → StaticPathname`, legal links got their own `LegalLinkItem` interface.
+- `src/components/layout/header.tsx` — submenu param retyped to `SubmenuItem[]`.
+- `src/components/layout/footer.tsx` — `FooterLink` href retyped to `StaticPathname`.
+- `src/components/sections/services-grid.tsx` — `ServiceCard.item.href` retyped.
+- `src/components/sections/portfolio-showcase.tsx` — dynamic Link moved to object form (`{ pathname: "/portfolio/[slug]", params: { slug } }`).
+
+### CtaBlock → prop-driven
+Was hard-coded to read `home.cta.*` translations. Refactored to accept `eyebrow`, `heading`, `description`, `primary: { label, href }`, `secondary: { label, href }` as props. Home and About pages now fetch their own CTA copy and pass it in. Swedish hero headline gets the same `lang="sv"` + `hyphens-auto` safety net already used in hero-home.
+
+### About page (`src/app/[locale]/about/page.tsx`) + five sections under `src/components/sections/about/`
+- `hero-about.tsx` — eyebrow + display-lg mission statement + one-paragraph intro. Breaks out of layout's top padding (`-mt-24 md:-mt-28`) like the home hero. `lang="sv"` + `hyphens-auto` to prevent long Swedish compounds from overflowing.
+- `our-history.tsx` — 2-column asymmetric (per spec): narrow sidebar (sticky on desktop) with `01 — Vår historia` eyebrow + h1; wide prose column on right with three paragraphs (founding / growth / ethos). Collapses to single column on mobile.
+- `our-values.tsx` — four equal-weight values in a uniform grid (1-col mobile, 2×2 md, 4-col lg). Each card: top-border + Lucide outline icon (ShieldCheck · Leaf · Target · Lock) + 2-digit index eyebrow + display-h4 name + one-sentence commitment. **No agency cliché** — each description is a concrete commitment ("Varje produkt genomgår en intern QA innan den lämnar studion", "Vi publicerar inga kundnamn utan skriftligt medgivande", etc.).
+- `process-teaser.tsx` — section heading on the left, numbered 3-step preview on the right. Links to `/process` at the bottom with the underline-reveal + arrow pattern used elsewhere.
+- `team-placeholder.tsx` — minimal, honest placeholder. Eyebrow + heading + paragraph explaining a team page is coming, plus a small `Kommer snart` pill. **No generic box grid** — filler grids look worse than a clean "in progress" statement.
+
+Page composition: `<HeroAbout /> → <OurHistory /> → <OurValues /> → <ProcessTeaser /> → <TeamPlaceholder /> → <CtaBlock />`. All sections use the tightened `py-12 md:py-16 lg:py-20` padding.
+
+### Translations (sv.json + en.json)
+Added `about.*` namespace with the full Swedish B2B copy (canonical) and English mirror. Keys: `about.meta.{title,description}`, `about.hero.{eyebrow,heading,description}`, `about.history.{eyebrow,heading,body.{founding,growth,ethos}}`, `about.values.{eyebrow,heading,description,items.{quality,sustainability,precision,partnership}.{name,description}}`, `about.process.{eyebrow,heading,description,viewAll,steps.{brief,concept,production}.{title,description}}`, `about.team.{eyebrow,heading,description,status}`, `about.cta.*`. Tone deliberately non-marketing — "Det här är inte marknadsföringsfraser" / "These aren't marketing phrases" as the values section lede.
+
+### Metadata
+`generateMetadata` in the about page pulls `about.meta.title` + `about.meta.description` with OG mirror. `title` renders through the root template (`"%s · AW AB"`).
+
+**Verified working:**
+- `/sv/om-oss` → 200, Swedish content. `/en/about` → 200, English content.
+- `/sv/about` → 307 (middleware redirects to the canonical Swedish URL).
+- `/en/om-oss` → 307 (symmetric).
+- Header nav links on `/sv/om-oss` render as `/sv/arbeten`, `/sv/tjanster`, `/sv/kontakt`, `/sv/offert`, `/sv/integritetspolicy`, `/sv/villkor`, `/sv/cookies` — all auto-localized by next-intl's `<Link>`.
+- Home page unaffected (`/sv` and `/en` still 200, CtaBlock prop-driven but renders same copy).
+- Styleguide unaffected.
+- `tsc --noEmit` clean.
+
+**Deviations / notes:**
+- **`StaticPathname` type split** is a new pattern I had to introduce. Without it, typed `href` props across constants.ts and several components complained that `/portfolio/[slug]` (dynamic) wasn't a valid string literal for `<Link>`. Dynamic routes require `{pathname, params}` object form; the type split enforces this distinction cleanly.
+- **Not-yet-built routes** (services/*, portfolio, quote, contact, process, privacy/terms/cookies) are listed in pathnames anyway so internal links type-check. They 404 at runtime until the page file lands — that's the same behaviour as before, just now with prettier Swedish URLs.
+- **Team section** stays minimal on purpose. The spec said "OPSIYONEL, şimdilik skip, placeholder olarak 'Kommer snart'". A grid of generic placeholder boxes would read worse than a clean "coming soon" pill with a real fact ("tolv personer") anchoring the section.
+
+**Up next:** ADIM 6 — Services pages (main services page + 4 detail pages: boxes, bags, corporate-print, custom).

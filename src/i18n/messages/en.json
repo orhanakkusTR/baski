@@ -79,6 +79,82 @@
       "secondary": "Contact us"
     }
   },
+  "about": {
+    "meta": {
+      "title": "About",
+      "description": "AW AB is a Swedish packaging agency based in Stockholm, founded in 2019. We design and produce gift boxes, paper bags, and corporate print for premium and luxury brands."
+    },
+    "hero": {
+      "eyebrow": "About AW AB",
+      "heading": "Packaging is the first physical meeting with your brand.",
+      "description": "We design and produce for brands that need that moment to hold — from the first impression on the shop floor to the back of the carton in the warehouse."
+    },
+    "history": {
+      "eyebrow": "01 — Our history",
+      "heading": "Since 2019, from Gamla stan.",
+      "body": {
+        "founding": "AW AB was founded in 2019 by a team with backgrounds in both graphic design and industrial packaging production. The aim was to close the gap between a brand's visual language and the physical object that carries it — a gap we saw recur in projects we'd previously done separately.",
+        "growth": "Today we run a twelve-person studio working with Nordic premium brands, international luxury labels, and selected corporate clients who pack in larger volume. Production happens with carefully selected partners in Sweden, Germany, and Italy, and every proof is checked in our own studio before it leaves the building.",
+        "ethos": "We believe packaging is a design discipline in its own right — not an afterthought to a brand book. That shapes how we read briefs, how we price, and how we plan time."
+      }
+    },
+    "values": {
+      "eyebrow": "02 — Our values",
+      "heading": "Four commitments we don't negotiate.",
+      "description": "These aren't marketing phrases. They're what drives a yes and a no on every engagement.",
+      "items": {
+        "quality": {
+          "name": "Quality without compromise",
+          "description": "Every product goes through internal QA before it leaves the studio. Material samples and press proofs are part of the standard process, not a premium add-on."
+        },
+        "sustainability": {
+          "name": "Sustainability by default",
+          "description": "FSC-certified paper as a starting point. We always propose the minimum material spec that meets the design intent — even when the client hasn't asked."
+        },
+        "precision": {
+          "name": "Creative precision",
+          "description": "Technical drawings follow concepts, not the other way around. Design dictates construction — not the reverse. That's why we have designers and production engineers in the same studio."
+        },
+        "partnership": {
+          "name": "Discreet partnership",
+          "description": "We don't publish client names without written consent. Project information stays internal until the client decides it can be shared."
+        }
+      }
+    },
+    "process": {
+      "eyebrow": "03 — How we work",
+      "heading": "From brief to delivery, in six steps.",
+      "description": "Our engagements follow a defined process. Each step has a clear entry condition and sign-off before the next begins.",
+      "viewAll": "See the full process",
+      "steps": {
+        "brief": {
+          "title": "Brief & research",
+          "description": "Brand audit, material studies, and technical feasibility. We ask for things others don't — and say no early if we don't see fit."
+        },
+        "concept": {
+          "title": "Concept & prototype",
+          "description": "Two or three directions with physical prototypes, not renders. You should be able to pick the finished object out of a bag before we sign."
+        },
+        "production": {
+          "title": "Production & delivery",
+          "description": "Proofing, certified presses, QC against a signed master. Freight logistics are always included."
+        }
+      }
+    },
+    "team": {
+      "eyebrow": "04 — The team",
+      "heading": "The twelve people behind AW AB.",
+      "description": "A full team presentation is on the way. Until then: we are a team of twelve — designers, production engineers, and project leads — based in a studio in Gamla stan, Stockholm.",
+      "status": "Coming soon"
+    },
+    "cta": {
+      "eyebrow": "Next step",
+      "heading": "Brief in motion?",
+      "description": "We review brief and scope before we respond — no boilerplate pitch, no spam.",
+      "primary": "Request quote",
+      "secondary": "Contact us"
+    }
+  },
   "footer": {
     "tagline": {
       "eyebrow": "AW AB · Since 2019",

@@ -86,7 +86,10 @@ function ProjectCard({ project, title, category, size }: ProjectCardProps) {
 
   return (
     <Link
-      href={`/portfolio/${project.slug}`}
+      href={{
+        pathname: "/portfolio/[slug]",
+        params: { slug: project.slug },
+      }}
       className="group/project flex flex-col gap-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
     >
       <div

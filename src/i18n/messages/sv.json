@@ -79,6 +79,82 @@
       "secondary": "Kontakta oss"
     }
   },
+  "about": {
+    "meta": {
+      "title": "Om oss",
+      "description": "AW AB är en svensk förpackningsbyrå i Stockholm, grundad 2019. Vi designar och producerar presentkartonger, papperskassar och företagstryck för premium- och lyxvarumärken."
+    },
+    "hero": {
+      "eyebrow": "Om AW AB",
+      "heading": "Förpackning är det första fysiska mötet med ditt varumärke.",
+      "description": "Vi designar och producerar för varumärken som behöver att den upplevelsen håller — från första intryck på butiksgolvet till kartongens baksida i lagret."
+    },
+    "history": {
+      "eyebrow": "01 — Vår historia",
+      "heading": "Sedan 2019, från Gamla stan.",
+      "body": {
+        "founding": "AW AB grundades 2019 av ett team med bakgrund inom både grafisk design och industriell förpackningsproduktion. Syftet var att sluta glappet mellan ett varumärkes visuella språk och det fysiska objekt som bär det — en lucka vi såg återkomma i projekt vi gjorde separat tidigare.",
+        "growth": "Idag driver vi en studio om tolv personer och arbetar med nordiska premiummärken, internationella lyxetiketter och utvalda företag som förpackar i större volym. Produktionen sker hos noga utvalda partners i Sverige, Tyskland och Italien, och varje provtryck kontrolleras i vår egen studio innan det lämnar huset.",
+        "ethos": "Vi tror att förpackning är en egen designdisciplin — inte ett efterspel till en brandbok. Det formar hur vi läser brief, hur vi prissätter och hur vi räknar tid."
+      }
+    },
+    "values": {
+      "eyebrow": "02 — Våra värderingar",
+      "heading": "Fyra åtaganden vi inte gör avkall på.",
+      "description": "Det här är inte marknadsföringsfraser. Det är vad som styr ett nej och ett ja i varje uppdrag.",
+      "items": {
+        "quality": {
+          "name": "Kvalitet utan kompromiss",
+          "description": "Varje produkt genomgår en intern QA innan den lämnar studion. Materialprov och provtryck är del av standardarbetet, inte ett premiumtillägg."
+        },
+        "sustainability": {
+          "name": "Hållbarhet i grunden",
+          "description": "FSC-certifierat papper som utgångspunkt. Vi föreslår alltid det minsta materialöverskottet som uppfyller designavsikten — även när kunden inte frågar efter det."
+        },
+        "precision": {
+          "name": "Kreativ precision",
+          "description": "Tekniska ritningar kommer efter koncepten, inte före. Designen får diktera konstruktionen — inte tvärtom. Därför har vi både designers och produktionsingenjörer i samma studio."
+        },
+        "partnership": {
+          "name": "Diskret partnerskap",
+          "description": "Vi publicerar inga kundnamn utan skriftligt medgivande. Projektinformation stannar internt tills kunden själv bestämmer att den får delas."
+        }
+      }
+    },
+    "process": {
+      "eyebrow": "03 — Så arbetar vi",
+      "heading": "Från brief till leverans, i sex steg.",
+      "description": "Våra åtaganden följer en definierad process. Varje steg har ett tydligt startvillkor och en sign-off innan nästa tar vid.",
+      "viewAll": "Se hela processen",
+      "steps": {
+        "brief": {
+          "title": "Brief & research",
+          "description": "Varumärkesaudit, materialstudier och teknisk förstudie. Vi ber om saker andra inte ber om — och säger nej om vi inte ser passform."
+        },
+        "concept": {
+          "title": "Koncept & prototyp",
+          "description": "Två till tre riktningar med fysiska prototyper, inte renderings. Vi ska kunna ta upp det färdiga objektet ur väskan innan vi signar."
+        },
+        "production": {
+          "title": "Produktion & leverans",
+          "description": "Provtryck, certifierade pressar, kvalitetskontroll mot signerad master. Fraktlogistiken ingår alltid."
+        }
+      }
+    },
+    "team": {
+      "eyebrow": "04 — Teamet",
+      "heading": "De tolv personerna bakom AW AB.",
+      "description": "En full teampresentation är på gång. Tills vidare: vi är ett team om tolv — designers, produktionsingenjörer och projektledare — baserade i en studio i Gamla stan, Stockholm.",
+      "status": "Kommer snart"
+    },
+    "cta": {
+      "eyebrow": "Nästa steg",
+      "heading": "Ett uppdrag på gång?",
+      "description": "Vi går igenom brief och scope innan vi återkommer med förslag — ingen standardpitch, inget spam.",
+      "primary": "Begär offert",
+      "secondary": "Kontakta oss"
+    }
+  },
   "footer": {
     "tagline": {
       "eyebrow": "AW AB · Sedan 2019",
