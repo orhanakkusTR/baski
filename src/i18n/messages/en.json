@@ -417,6 +417,49 @@
       "secondary": "Contact us"
     }
   },
+  "portfolio": {
+    "meta": {
+      "title": "Work",
+      "description": "Selected packaging and print projects by AW AB — gift boxes, paper bags, corporate print and bespoke production for premium brands."
+    },
+    "hero": {
+      "eyebrow": "Work",
+      "heading": "Projects that carry brands.",
+      "description": "A selection of engagements where material, construction and brand met. Filter by discipline — or browse the full archive."
+    },
+    "viewProject": "View project",
+    "empty": "No projects match the current filter.",
+    "filter": {
+      "all": "All"
+    },
+    "cta": {
+      "eyebrow": "Your own project?",
+      "heading": "Time to build your case?",
+      "description": "Send us brief and volume — we'll respond with a concrete proposal within 48 hours.",
+      "primary": "Request quote",
+      "secondary": "Contact us"
+    },
+    "detail": {
+      "back": "Back to work",
+      "challenge": "Challenge",
+      "solution": "Solution",
+      "results": "Results",
+      "galleryEyebrow": "Gallery",
+      "galleryHeading": "More angles.",
+      "close": "Close",
+      "prev": "Previous image",
+      "next": "Next image",
+      "similarEyebrow": "Related projects",
+      "similarHeading": "Similar engagements.",
+      "cta": {
+        "eyebrow": "Next case",
+        "heading": "Want to build something similar?",
+        "description": "Send us brief and scope — we'll return with a concrete proposal within 48 hours.",
+        "primary": "Request quote",
+        "secondary": "Contact us"
+      }
+    }
+  },
   "about": {
     "meta": {
       "title": "About",

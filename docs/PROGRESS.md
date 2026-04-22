@@ -267,4 +267,101 @@ Swedish copy is canonical; English is edited parallel (not literal translation).
 - **Volume section in corporate-print is bespoke, not a component.** Built inline in the page rather than extracting to `services/service-volume.tsx`. Rationale: none of the other service pages have a comparable section, so premature abstraction; inline keeps the structure legible.
 - **Custom page has no materials grid on purpose.** The brief framed custom as a consult-first service where the spec emerges in scoping, not on a website. Publishing a tag-pill materials grid would undermine the "Ring innan du briefar" stance.
 
+**Up next:** ADIM 7 — Portfolio system + Sanity CMS integration (schemas, embedded studio, portfolio index + detail pages).
+
+---
+
+## ADIM 7 — Portfolio & Sanity CMS (2026-04-23)
+
+### Sanity Studio
+
+Root-level config with the studio embedded inside Next at `/studio`:
+
+- `sanity.config.ts` — workspace definition (name, projectId/dataset from env, basePath `/studio`, structure tool + Vision plugin, schema aggregate).
+- `sanity.cli.ts` — CLI config for `npm run sanity:dev` / `sanity:build` / `sanity:deploy` (all three scripts added to package.json).
+- `sanity/schemas/index.ts` — flat array of schema types. Singleton set exported for structure filtering.
+- `sanity/structure.ts` — custom structure: Home page + Site settings pinned at the top as fixed singleton editors (force single instance by filtering their types from the auto-list); Projects / Clients / Services / Testimonials below.
+- `src/app/studio/layout.tsx` + `src/app/studio/[[...tool]]/page.tsx` — embedded studio route. The layout returns `<html>` / `<body>` directly without the public header / footer / locale padding. Middleware matcher extended with `studio|` so next-intl does not try to prefix `/studio` with `/sv`.
+
+### Schemas
+
+Structured under `sanity/schemas/`:
+
+**Objects:**
+- `localizedString` — `{ sv (required), en (optional) }` for short strings. Swedish is canonical.
+- `localizedText` — per-locale portable text (each locale its own `blockContent[]` so translations can diverge at paragraph level).
+- `blockContent` — narrow Portable Text config (normal / h2 / h3 / blockquote + bullet/number lists + strong/em/link marks). No code blocks, no image embeds in the text flow (gallery handles imagery separately).
+- `seo` — optional per-document override: title / description / ogImage / noindex. Falls back to document's own fields when blank.
+- `galleryImage` — `{ image (hotspot), alt (required localizedString), caption (optional) }`.
+
+**Documents:**
+- `project` — full portfolio case: title, slug (auto from `title.sv`), client reference + `anonymousClient` fallback string, category select (boxes/bags/corporate/custom — matches `ServiceKey` enum), year, services reference array (many-to-many for cross-discipline projects), materials string array (tag pills), heroImage, description (short one-line), challenge/solution/results (localizedText), gallery array, featured boolean, order number, seo.
+- `client` — name, logo, industry select, website, **`publishedConsent` boolean** (defaults false; filtered in queries so logos never surface without written consent on file).
+- `service` — key (locked to ServiceKey enum), name, summary, order. Join target for `project.services` references; placeholder for future Sanity-driven service pages.
+- `testimonial` — quote (localizedText), attribution, role, client ref, optional project ref, featured boolean.
+
+**Singletons** (regular document types, pinned via structure):
+- `homePage` — featuredProjects (max 3 references, index 0 = hero banner), featuredClients (logo strip), stats (numeric counters). Hero / CTA text stays in i18n JSON because it is brand voice, not rotating editorial.
+- `siteSettings` — contactEmail / contactPhone, address lines, social handles, defaultOgImage. Structural facts (orgNumber, VAT, foundingYear) stay in `constants.ts`.
+
+### Site-side client
+
+`src/lib/sanity/`:
+
+- `env.ts` — resolves env vars; exports `sanityEnabled = projectId.length > 0` so downstream code can short-circuit.
+- `client.ts` — `sanityClient` is `null` when Sanity is unconfigured. `useCdn: true`, `perspective: "published"`.
+- `image.ts` — `urlFor(source)` returns the builder, or `null` when the builder or source is missing.
+- `types.ts` — `LocalizedString`, `LocalizedText`, `SanityImage`, `GalleryImage`, `ClientDoc`, `ProjectListItem`, `ProjectDetail` + a `pickLocale()` helper (Swedish fallback when English is missing).
+- `queries.ts` — GROQ projections. Light `listProjection` (id / slug / title / flat clientName via coalesce(client->name, anonymousClient) / category / year / description / heroImage / materials / featured / order) and `detailProjection` that adds challenge / solution / results / gallery / seo. Functions: `getAllProjects`, `getFeaturedProjects(limit=3)`, `getProjectsByCategory(cat, excludeSlug?, limit=2)`, `getProjectBySlug(slug)`, `getAllProjectSlugs()`. Each returns `[]` / `null` when Sanity is disabled.
+- `adapter.ts` — `displayFromSanity(project, locale)` and `fallbackDisplayProjects()` produce the flat `DisplayProject` shape that card components consume. `DisplayProject.linkable` is `false` on fallback projects so their cards render as `<article>` rather than `<Link>` (slugs don't resolve to real detail pages until Sanity is populated; a link would 404).
+
+### Pages
+
+**`/portfolio`** (`src/app/[locale]/portfolio/page.tsx`): hero (eyebrow / heading with gold HeadingDot / description) → `PortfolioListing` client component → CtaBlock.
+
+`PortfolioListing` is a `"use client"` block. It receives pre-fetched projects + localized category labels and handles URL-synced filtering itself via `useSearchParams()` / `useRouter().replace(..., { scroll: false })`. Filter chips render in a typographic bar with a gold underline on the active chip; empty categories are hidden so the bar never lies. The grid is a 12-column asymmetric layout cycling through a 7-item pattern of col-spans and aspect ratios (`4/3`, `4/5`, `4/5`, `4/3`, full-width `16/9`, `3/2`, `3/2`) — breaks the checkerboard rhythm a uniform grid would produce.
+
+**`/portfolio/[slug]`** (`src/app/[locale]/portfolio/[slug]/page.tsx`): back link + meta strip → title / description / materials tag pills → full-bleed hero (`16/9` on md+) → Challenge / Solution / Results narrative (conditional — only blocks that have content render, each a 2-col `[1fr_2fr]` split with numbered eyebrow and PortableText body) → `ProjectGallery` (lightbox modal) → `ServiceCaseTeaser`-style "Similar projects" row (3 cards from same category, excluding current slug) → CtaBlock.
+
+`generateStaticParams` pulls all project slugs from Sanity. Empty when Sanity is unconfigured — slug visits hit `notFound()` at runtime.
+
+`generateMetadata` pulls title / description from the project (locale-aware), OG image from `seo.ogImage` with hero fallback, `noindex` support.
+
+### Gallery lightbox
+
+`src/components/sections/portfolio/project-gallery.tsx` — `"use client"`. Grid of thumbnails (2-col mobile, 3-col md; every 5th tile spans 2 cols / every 7th spans 2 rows to break the checkerboard) that open a fullscreen modal centered on the active image. Keyboard: ArrowLeft / ArrowRight step, Escape closes. On-screen chevron buttons mirror the keyboard. Body scroll is locked while the modal is open (overflow: hidden on `document.body`, restored on close). No external lightbox dep.
+
+### Portable Text rendering
+
+`portable-body.tsx` renders `challenge` / `solution` / `results` through `@portabletext/react` with brand-consistent components — `text-body-lg text-stone` paragraphs, Fraunces H2/H3, gold-lined blockquotes, typographic lists, gold-underlined external links.
+
+### Featured sections wired to Sanity
+
+- Homepage `PortfolioShowcase` now fetches `getFeaturedProjects(3)` and maps through `displayFromSanity`. Empty Sanity → falls back to the three seed projects in `src/lib/mock-projects.ts` (rendered non-linkable so their placeholder cards don't lead to 404). Preserves the existing 1-banner + 2-row layout.
+- Service pages (`/services/boxes`, `/services/bags`) fetch `getProjectsByCategory(key, undefined, 2)`. `ServiceCaseTeaser` now takes `DisplayProject[]` and renders `ProjectCard`s with locale-aware category labels. When Sanity returns zero matches, the teaser renders `null` — no fallback section, no orphan links. Corporate-print and custom service pages never used the case teaser.
+
+### Middleware / build configuration
+
+- `src/middleware.ts`: matcher extended to `/((?!api|trpc|_next|_vercel|studio|.*\\..*).*)` so `/studio` bypasses the locale rewriter.
+- `next.config.ts`: added `images.remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }]` so `<Image>` can source from the Sanity asset CDN.
+- `.env.example` expanded with explanations of each Sanity var and a note that the site is designed to build without them.
+
+### Verified working
+
+- `tsc --noEmit` clean across the whole project (schemas + app + client code).
+- Routes: `/sv`, `/en`, `/sv/arbeten`, `/en/portfolio`, `/sv/arbeten?category=boxes`, `/sv/om-oss`, `/sv/tjanster`, `/sv/tjanster/kartonger`, `/sv/tjanster/kassar`, `/sv/tjanster/foretagstryck`, `/sv/tjanster/specialproduktion`, `/studio` → all 200.
+- Portfolio listing renders 3 fallback projects with hover overlays + category filter bar that includes only the categories actually present.
+- `/portfolio/[slug]` returns 404 for the fallback slugs — correct behaviour until Sanity has real data (the fallback cards are intentionally non-clickable, so this 404 is unreachable from within the UI).
+- `/studio` compiles (22 s first hit, ~6.8k modules — expected for Sanity's studio bundle) and returns 200. Without `NEXT_PUBLIC_SANITY_PROJECT_ID`, the studio UI itself will show its own "connect a project" state — that is Sanity's doing, not a site bug. Set the env var to activate it.
+
+### Deviations / notes
+
+- **`category` is a select on `project`, not a reference to `service`.** Four disciplines are a fixed enum; a reference would force a join for every listing query just to resolve the filter. Cross-discipline projects use the separate `services` reference array instead.
+- **Service documents exist but the service detail pages stay hardcoded.** Migrating them to Sanity was out of scope and would bury real Swedish copy under CMS boilerplate. The `service` document is a join target and a placeholder for later.
+- **Anonymous clients.** Projects can be published with `anonymousClient: "Premium spirits brand"` (string) instead of a full client reference — preserves our discretion default while still allowing the case study to appear.
+- **Gallery lightbox is a custom component, not `yet-another-react-lightbox` / fancybox / photoswipe.** 150 lines of state + keyboard + CSS does the job; adding a library would swap the brand palette for whatever the library ships.
+- **Fallback `DisplayProject.linkable: false`.** Fallback mock projects render as non-clickable `<article>` rather than `<Link>` because their slugs don't resolve against an empty Sanity. Once the user populates Sanity with real projects, `linkable: true` flows through and cards become normal links.
+
+**Up next:** ADIM 8 — Process page (timeline / steps visualisation).
+
 **Up next:** ADIM 7 — Portfolio system (Sanity schema + listing page + per-project detail pages).

@@ -1,31 +1,56 @@
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { ImagePlaceholder } from "@/components/shared/image-placeholder";
 import { Badge } from "@/components/shared/badge";
-import { featuredProjects, type ProjectMock } from "@/lib/mock-projects";
+import {
+  displayFromSanity,
+  fallbackDisplayProjects,
+  type DisplayProject,
+} from "@/lib/sanity/adapter";
+import { getFeaturedProjects } from "@/lib/sanity/queries";
+import type { Locale } from "@/i18n/routing";
+import type { ServiceKey } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
- * 02 — Featured portfolio showcase.
+ * 02 — Featured portfolio showcase (home page).
  *
- * Editorial "feature + supporting" layout for exactly three projects:
- *   1. A single full-width hero project up top (aspect 16/9 landscape) —
- *      the most recent / flagship case. Reads like a magazine opener.
- *   2. Two supporting projects in a 2-col row below (aspect 3/2 each).
+ * Editorial "feature + supporting" layout for up to three projects:
+ *   index 0 → full-width hero banner (16/9 on md+)
+ *   index 1,2 → supporting row, side by side (3/2 each)
  *
- * The previous 1-big-left + 2-stacked-right pattern made the hero image
- * stretch to match the sum of the right column (~1100 px tall at ~500 px
- * wide) — no real project photo fits that aspect naturally. A banner +
- * row reads like a case-study index and lets every image live at a
- * sensible landscape ratio.
+ * Data source: Sanity `getFeaturedProjects(3)`. When Sanity is empty
+ * (unconfigured or no projects flagged featured), falls back to the
+ * three seed projects in `src/lib/mock-projects.ts` so the home page
+ * has something real to render even before the CMS is populated.
  */
 export async function PortfolioShowcase() {
   const t = await getTranslations();
-  const [featured, ...rest] = featuredProjects;
+  const locale = (await getLocale()) as Locale;
+
+  const fromSanity = await getFeaturedProjects(3);
+  const projects: DisplayProject[] =
+    fromSanity.length > 0
+      ? fromSanity.map((p) => displayFromSanity(p, locale))
+      : await fallbackDisplayProjects();
+
+  if (projects.length === 0) return null;
+
+  const [featured, ...rest] = projects;
+  const categoryLabel = (cat: string) => {
+    const map: Record<ServiceKey, string> = {
+      boxes: t("services.boxes.name"),
+      bags: t("services.bags.name"),
+      corporate: t("services.corporate.name"),
+      custom: t("services.custom.name"),
+    };
+    return map[cat as ServiceKey] ?? cat;
+  };
 
   return (
     <Container as="section" className="py-12 md:py-16 lg:py-20">
@@ -49,60 +74,61 @@ export async function PortfolioShowcase() {
       </div>
 
       <div className="mt-16 flex flex-col gap-10 md:gap-14">
-        {/* Featured hero — full width, landscape banner */}
-        <ProjectCard
+        <FeaturedCard
           project={featured}
-          title={t(featured.titleKey)}
-          category={t(`services.${featured.category}.name`)}
+          category={categoryLabel(featured.category)}
           size="hero"
         />
 
-        {/* Supporting projects — 2-col row */}
-        <div className="grid gap-10 md:grid-cols-2 md:gap-8">
-          {rest.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              title={t(project.titleKey)}
-              category={t(`services.${project.category}.name`)}
-              size="small"
-            />
-          ))}
-        </div>
+        {rest.length > 0 ? (
+          <div className="grid gap-10 md:grid-cols-2 md:gap-8">
+            {rest.map((p) => (
+              <FeaturedCard
+                key={p.slug}
+                project={p}
+                category={categoryLabel(p.category)}
+                size="small"
+              />
+            ))}
+          </div>
+        ) : null}
       </div>
     </Container>
   );
 }
 
-interface ProjectCardProps {
-  project: ProjectMock;
-  title: string;
+interface FeaturedCardProps {
+  project: DisplayProject;
   category: string;
   size: "hero" | "small";
 }
 
-function ProjectCard({ project, title, category, size }: ProjectCardProps) {
+function FeaturedCard({ project, category, size }: FeaturedCardProps) {
   const isHero = size === "hero";
-
-  return (
-    <Link
-      href={{
-        pathname: "/portfolio/[slug]",
-        params: { slug: project.slug },
-      }}
-      className="group/project flex flex-col gap-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
-    >
+  const body = (
+    <>
       <div
         className={cn(
-          "relative overflow-hidden",
+          "relative overflow-hidden bg-bone",
           isHero ? "aspect-[3/2] md:aspect-[16/9]" : "aspect-[3/2]",
         )}
       >
-        <ImagePlaceholder
-          label={project.imageLabel}
-          fill
-          className="transition-transform duration-[900ms] ease-out group-hover/project:scale-[1.03]"
-        />
+        {project.heroUrl ? (
+          <Image
+            src={project.heroUrl}
+            alt={project.title}
+            fill
+            priority={isHero}
+            sizes={isHero ? "100vw" : "(min-width: 768px) 50vw, 100vw"}
+            className="object-cover transition-transform duration-[900ms] ease-out group-hover/project:scale-[1.03]"
+          />
+        ) : (
+          <ImagePlaceholder
+            label={project.imageLabel}
+            fill
+            className="transition-transform duration-[900ms] ease-out group-hover/project:scale-[1.03]"
+          />
+        )}
         <div className="absolute left-4 top-4 md:left-6 md:top-6">
           <Badge variant="solid" tone="paper">
             {category}
@@ -118,7 +144,8 @@ function ProjectCard({ project, title, category, size }: ProjectCardProps) {
       >
         <div className="flex flex-col gap-2">
           <span className="font-mono text-caption uppercase text-stone">
-            {project.client} · {project.year}
+            {project.clientName || "—"}
+            {project.year ? ` · ${project.year}` : ""}
           </span>
           <h3
             className={cn(
@@ -126,7 +153,7 @@ function ProjectCard({ project, title, category, size }: ProjectCardProps) {
               isHero ? "text-h1 md:text-display-lg" : "text-h3",
             )}
           >
-            {title}
+            {project.title}
           </h3>
         </div>
         <ArrowUpRight
@@ -137,6 +164,25 @@ function ProjectCard({ project, title, category, size }: ProjectCardProps) {
           )}
         />
       </div>
+    </>
+  );
+
+  const wrapperClass = cn(
+    "group/project flex flex-col gap-5",
+    project.linkable &&
+      "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
+  );
+
+  if (!project.linkable) {
+    return <article className={wrapperClass}>{body}</article>;
+  }
+
+  return (
+    <Link
+      href={{ pathname: "/portfolio/[slug]", params: { slug: project.slug } }}
+      className={wrapperClass}
+    >
+      {body}
     </Link>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { CtaBlock } from "@/components/sections/cta-block";
 import { ServiceHero } from "@/components/sections/services/service-hero";
@@ -11,10 +11,10 @@ import {
   ServiceMaterials,
   type MaterialGroup,
 } from "@/components/sections/services/service-materials";
-import {
-  ServiceCaseTeaser,
-  type CaseTeaserItem,
-} from "@/components/sections/services/service-case-teaser";
+import { ServiceCaseTeaser } from "@/components/sections/services/service-case-teaser";
+import type { Locale } from "@/i18n/routing";
+import { displayFromSanity } from "@/lib/sanity/adapter";
+import { getProjectsByCategory } from "@/lib/sanity/queries";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("services.bags.page.meta");
@@ -27,6 +27,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ServiceBagsPage() {
   const t = await getTranslations("services.bags.page");
+  const tServices = await getTranslations("services");
+  const tPortfolio = await getTranslations("portfolio");
+  const locale = (await getLocale()) as Locale;
 
   const typeKeys = ["luxuryShopping", "gift", "kraft", "eventRetail"] as const;
   const types: FeatureListItem[] = typeKeys.map((key) => ({
@@ -41,12 +44,8 @@ export default async function ServiceBagsPage() {
     tags: t.raw(`materials.items.${key}.tags`) as string[],
   }));
 
-  const caseKeys = ["veka", "meridian"] as const;
-  const cases: CaseTeaserItem[] = caseKeys.map((key) => ({
-    label: t(`cases.items.${key}.label`),
-    summary: t(`cases.items.${key}.summary`),
-    imageLabel: t(`cases.items.${key}.imageLabel`),
-  }));
+  const sanityCases = await getProjectsByCategory("bags", undefined, 2);
+  const cases = sanityCases.map((p) => displayFromSanity(p, locale));
 
   return (
     <>
@@ -76,6 +75,8 @@ export default async function ServiceBagsPage() {
         heading={t("cases.heading")}
         description={t("cases.description")}
         viewAllLabel={t("cases.viewAll")}
+        viewProjectLabel={tPortfolio("viewProject")}
+        categoryLabel={tServices("bags.name")}
         items={cases}
       />
 

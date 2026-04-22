@@ -417,6 +417,49 @@
       "secondary": "Kontakta oss"
     }
   },
+  "portfolio": {
+    "meta": {
+      "title": "Arbeten",
+      "description": "Ett urval förpacknings- och tryckprojekt från AW AB — presentkartonger, papperskassar, företagstryck och specialproduktion för premiummärken."
+    },
+    "hero": {
+      "eyebrow": "Arbeten",
+      "heading": "Projekt som bär varumärken.",
+      "description": "Ett urval uppdrag där material, konstruktion och varumärke möttes. Filtrera på disciplin — eller bläddra hela arkivet."
+    },
+    "viewProject": "Se projekt",
+    "empty": "Inga projekt matchar valt filter.",
+    "filter": {
+      "all": "Alla"
+    },
+    "cta": {
+      "eyebrow": "Ett eget projekt?",
+      "heading": "Dags att bygga ditt case?",
+      "description": "Berätta om brief och volym — vi återkommer inom 48 timmar med ett konkret förslag.",
+      "primary": "Begär offert",
+      "secondary": "Kontakta oss"
+    },
+    "detail": {
+      "back": "Tillbaka till arbeten",
+      "challenge": "Utmaning",
+      "solution": "Lösning",
+      "results": "Resultat",
+      "galleryEyebrow": "Galleri",
+      "galleryHeading": "Fler vinklar.",
+      "close": "Stäng",
+      "prev": "Föregående bild",
+      "next": "Nästa bild",
+      "similarEyebrow": "Relaterade projekt",
+      "similarHeading": "Liknande uppdrag.",
+      "cta": {
+        "eyebrow": "Nästa case",
+        "heading": "Vill du bygga något liknande?",
+        "description": "Dela brief och scope — vi återkommer med ett konkret förslag inom 48 timmar.",
+        "primary": "Begär offert",
+        "secondary": "Kontakta oss"
+      }
+    }
+  },
   "about": {
     "meta": {
       "title": "Om oss",

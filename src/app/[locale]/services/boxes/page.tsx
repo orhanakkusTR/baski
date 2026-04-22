@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 import { CtaBlock } from "@/components/sections/cta-block";
 import { ServiceHero } from "@/components/sections/services/service-hero";
@@ -11,10 +11,10 @@ import {
   ServiceMaterials,
   type MaterialGroup,
 } from "@/components/sections/services/service-materials";
-import {
-  ServiceCaseTeaser,
-  type CaseTeaserItem,
-} from "@/components/sections/services/service-case-teaser";
+import { ServiceCaseTeaser } from "@/components/sections/services/service-case-teaser";
+import type { Locale } from "@/i18n/routing";
+import { displayFromSanity } from "@/lib/sanity/adapter";
+import { getProjectsByCategory } from "@/lib/sanity/queries";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("services.boxes.page.meta");
@@ -27,6 +27,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ServiceBoxesPage() {
   const t = await getTranslations("services.boxes.page");
+  const tServices = await getTranslations("services");
+  const tPortfolio = await getTranslations("portfolio");
+  const locale = (await getLocale()) as Locale;
 
   const typeKeys = ["rigid", "folding", "sleeve", "magnetic"] as const;
   const types: FeatureListItem[] = typeKeys.map((key) => ({
@@ -41,12 +44,11 @@ export default async function ServiceBoxesPage() {
     tags: t.raw(`materials.items.${key}.tags`) as string[],
   }));
 
-  const caseKeys = ["meridian", "lund"] as const;
-  const cases: CaseTeaserItem[] = caseKeys.map((key) => ({
-    label: t(`cases.items.${key}.label`),
-    summary: t(`cases.items.${key}.summary`),
-    imageLabel: t(`cases.items.${key}.imageLabel`),
-  }));
+  // Case teaser is driven by Sanity: two most recent box projects. When
+  // Sanity returns nothing (CMS unconfigured or empty category), the
+  // teaser section renders null — no orphan links to missing detail pages.
+  const sanityCases = await getProjectsByCategory("boxes", undefined, 2);
+  const cases = sanityCases.map((p) => displayFromSanity(p, locale));
 
   return (
     <>
@@ -76,6 +78,8 @@ export default async function ServiceBoxesPage() {
         heading={t("cases.heading")}
         description={t("cases.description")}
         viewAllLabel={t("cases.viewAll")}
+        viewProjectLabel={tPortfolio("viewProject")}
+        categoryLabel={tServices("boxes.name")}
         items={cases}
       />
 
