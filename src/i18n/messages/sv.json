@@ -35,6 +35,50 @@
       "description": "Egenutvecklade förpackningar — limiterade upplagor och showcase-projekt."
     }
   },
+  "home": {
+    "hero": {
+      "eyebrow": "Tryckeri & Förpackning · Sedan 2019",
+      "headline": "Premiumförpackningar för varumärken som betyder något.",
+      "subtitle": "Från Stockholm till tolv länder. Vi designar och producerar presentkartonger, papperskassar och företagstryck för premium- och lyxvarumärken.",
+      "secondary": "Se våra arbeten",
+      "scroll": "Scrolla"
+    },
+    "clients": {
+      "eyebrow": "Utvalda samarbeten",
+      "heading": "Varumärken som litar på oss"
+    },
+    "services": {
+      "eyebrow": "01 — Tjänster",
+      "heading": "Fyra hantverk, ett språk.",
+      "description": "Vi arbetar med fyra huvudsakliga discipliner. Varje uppdrag kombinerar materialkänsla, konstruktion och produktion — från skiss till levererad pall.",
+      "viewAll": "Alla tjänster"
+    },
+    "portfolio": {
+      "eyebrow": "02 — Utvalda arbeten",
+      "heading": "Senaste projekten.",
+      "description": "Ett urval case där material, konstruktion och varumärke möts.",
+      "viewAll": "Se alla projekt",
+      "items": {
+        "meridian": "Signaturkartong för limited-edition-lansering.",
+        "veka": "Holiday-papperskassar med foliering och bomullsband.",
+        "lund": "Presentationskit i matchande kvalitet."
+      }
+    },
+    "stats": {
+      "srHeading": "Nyckeltal",
+      "projects": "Levererade projekt",
+      "brands": "Varumärken",
+      "countries": "Länder vi levererat till",
+      "quality": "Kvalitetsklass"
+    },
+    "cta": {
+      "eyebrow": "Nästa projekt",
+      "heading": "Redo att skapa något minnesvärt?",
+      "description": "Berätta om uppdraget — vi återkommer med ett förslag inom 48 timmar.",
+      "primary": "Begär offert",
+      "secondary": "Kontakta oss"
+    }
+  },
   "footer": {
     "tagline": {
       "eyebrow": "AW AB · Sedan 2019",

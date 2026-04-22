@@ -35,6 +35,50 @@
       "description": "Bespoke packaging builds — limited editions and flagship showcase projects."
     }
   },
+  "home": {
+    "hero": {
+      "eyebrow": "Print & Packaging · Since 2019",
+      "headline": "Premium packaging for brands that mean something.",
+      "subtitle": "From Stockholm to twelve countries. We design and produce gift boxes, paper bags, and corporate print for premium and luxury brands.",
+      "secondary": "See our work",
+      "scroll": "Scroll"
+    },
+    "clients": {
+      "eyebrow": "Selected partnerships",
+      "heading": "Brands that trust us"
+    },
+    "services": {
+      "eyebrow": "01 — Services",
+      "heading": "Four disciplines, one language.",
+      "description": "We work across four main disciplines. Every engagement blends material sensibility, construction, and production — from sketch to palletised delivery.",
+      "viewAll": "All services"
+    },
+    "portfolio": {
+      "eyebrow": "02 — Selected work",
+      "heading": "Recent projects.",
+      "description": "A selection of work where material, construction, and brand meet.",
+      "viewAll": "See all projects",
+      "items": {
+        "meridian": "Signature box for a limited-edition launch.",
+        "veka": "Holiday paper bags with foil and cotton handles.",
+        "lund": "Presentation kit in matching quality."
+      }
+    },
+    "stats": {
+      "srHeading": "By the numbers",
+      "projects": "Projects delivered",
+      "brands": "Brands",
+      "countries": "Countries shipped to",
+      "quality": "Quality grade"
+    },
+    "cta": {
+      "eyebrow": "Next project",
+      "heading": "Ready to make something memorable?",
+      "description": "Tell us about the brief — we'll come back with a proposal within 48 hours.",
+      "primary": "Request quote",
+      "secondary": "Contact us"
+    }
+  },
   "footer": {
     "tagline": {
       "eyebrow": "AW AB · Since 2019",

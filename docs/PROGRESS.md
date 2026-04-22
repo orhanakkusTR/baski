@@ -98,3 +98,47 @@ Single source of truth for which build steps are complete. Update at the end of 
 - Language switcher swaps `/sv/<route>` ↔ `/en/<route>` preserving the current path.
 
 **Up next:** ADIM 4 — Homepage (hero, services overview, featured work, stats, CTA band).
+
+---
+
+## ADIM 4 — Homepage ✅ 2026-04-22
+
+**Status:** Complete. All six home sections render in both locales; `tsc --noEmit` clean; no warnings in dev log.
+
+**What was done:**
+- Added `src/components/shared/image-placeholder.tsx` — editorial stand-in for imagery (aspect-locked, labelled, subtle diagonal-line grain). Every hero/project/service visual uses this until real photography lands; parents can swap to `<Image>` as they come online.
+- Added `src/lib/mock-projects.ts` and `src/lib/mock-clients.ts` — fully fictional Nordic-sounding brand names (Meridian Spirits, Atelier Veka, Lund & Berg, Studio Nordisk, …). Swap to Sanity queries in ADIM 7 (projects) and Phase 1.5 (client roster). No real trademarks.
+- Built `src/components/sections/hero/hero-home.tsx` — client component. Full `min-h-[100svh]`, breaks out of the layout's top padding with `-mt-24 md:-mt-28` so the transparent header reads over content instead of sitting on a strip of paper. Re-pads internally (`pt-40 md:pt-52 lg:pt-56`) to clear the header visually. Headline gets a word-stagger reveal (overflow-hidden spans + motion, `y: 110% → 0%`, ease-editorial, ~85 ms between words). Eyebrow, subtitle, and CTA trio fade up with staggered delays keyed off `custom` index. Scroll indicator (mono "SCROLLA" + gold 40 px line that cycles top→bottom every 2.4 s + arrow) anchors the viewport bottom. All animation paths honour `useReducedMotion()`.
+- Built `src/components/sections/services-grid.tsx` — server component. Asymmetric 5-col grid on desktop: hero card spans cols 1–3 and both rows (boxes), three smaller cards stack in cols 4–5 (bags / corporate / custom). Each card is a whole-card Link: eyebrow number + service name, arrow up-right, description; `ImagePlaceholder` scales 1.03× on group hover. Section heading is left-aligned with a "Alla tjänster" link pinned to the bottom-right.
+- Built `src/components/sections/featured-clients.tsx` — server-wrapped marquee. Uses `Marquee` (Step 2) running at 60 s. Client names render in Fraunces display-h3, stone-60 by default, ink + gold dot on hover. A bordered strip (border-y) separates the section visually.
+- Built `src/components/sections/portfolio-showcase.tsx` — server component. Asymmetric 2-col grid: hero project (Meridian Signature) on the left spanning both rows with a 4/5 portrait placeholder; two stacked landscape (3/2) projects on the right. Each card: `ImagePlaceholder` + solid paper Badge (category) on image, client + year eyebrow, project title, arrow. Mock data seeded; swap to Sanity in ADIM 7.
+- Built `src/components/sections/stats-counter.tsx` — client component with `useInView` gating. Four stats (150+ projekt, 40+ varumärken, 12 länder, A++ kvalitet). Count-up uses `requestAnimationFrame` + cubic ease-out over 1500 ms; `prefersReducedMotion` falls back to static `staticValue`. The A++ stat is intentionally text-only (non-numeric) so the component's StatDef union captures both cases. Grid of 4 on desktop, 2 on mobile, with top borders per column for editorial rhythm.
+- Built `src/components/sections/cta-block.tsx` — server component. `bg-ink text-paper` full-width band. Gold 64 px accent line above a mono eyebrow, display-lg heading, paper/70 subtitle. Dual CTA: primary button styled paper-on-ink (fill inverted), outline button with paper border that fills on hover. Acts as the momentum full-stop before the footer's own dark band.
+- Wired everything in `src/app/[locale]/page.tsx` as a flat list of sections: Hero → FeaturedClients → ServicesGrid → PortfolioShowcase → StatsCounter → CtaBlock.
+- Populated homepage strings in `src/i18n/messages/{sv,en}.json` under `home.*`: `hero.{eyebrow,headline,subtitle,secondary,scroll}`, `clients.{eyebrow,heading}`, `services.{eyebrow,heading,description,viewAll}`, `portfolio.{eyebrow,heading,description,viewAll,items.{meridian,veka,lund}}`, `stats.{srHeading,projects,brands,countries,quality}`, `cta.{eyebrow,heading,description,primary,secondary}`. Swedish is canonical B2B; English mirrors it.
+
+**Deviations & notes:**
+- **Hero headline splits on word, not line.** The design system's `text-reveal` component supports `splitBy="line"` but requires explicit `\n`s in the source string — awkward for responsive breakpoints. Word stagger produces the same "wave" reading effect on a wrapped headline and preserves responsiveness. Ported the pattern inline in `hero-home.tsx` (rather than reusing `<TextReveal>`) so the hero can orchestrate its own sequence (eyebrow → headline words → subtitle → CTAs) as one timeline.
+- **Hydration flash on initial paint.** Framer's motion spans render SSR with `style="opacity:0;transform:translateY(110%)"` — so for an instant after first paint, the headline is invisible. H1's `aria-label` carries the full text, so screen readers and JS-rendering crawlers (Googlebot) see it. Acceptable tradeoff for the editorial reveal; if future audit flags LCP on mobile, we'll swap to CSS-driven animation.
+- **Images:** zero real `<img>` tags. All visuals are `ImagePlaceholder` divs. This is intentional per CLAUDE.md — once shots are delivered, swap call sites to `<Image>`.
+- **Stat #4 is static ("A++"), not a counter.** Prompt listed it among the 4 stats; the StatDef type allows `to: null` for this case so we don't fake-animate a non-number.
+- **Mock brand names.** Every client and project name is invented. No real brand substitution without written permission (CLAUDE.md warning).
+
+**Verified:**
+- `/sv` → 200, renders Premiumförpackningar + all 6 sections' key strings (Utvalda samarbeten, Fyra hantverk, Senaste projekten, Levererade projekt, Redo att skapa).
+- `/en` → 200, renders Premium packaging + all 6 English equivalents.
+- `/sv/styleguide` + `/en/styleguide` → 200 (no regression).
+- `tsc --noEmit` clean.
+- OG + Twitter meta complete (title, description, url, site_name, type, twitter:card).
+- H1 present with `aria-label` containing full headline.
+- No warnings or errors in dev log.
+
+**Pending in-browser checks (user):**
+- Headline word-stagger reveal timing reads well on mobile (should hit within ~1 s).
+- Services grid asymmetric layout on desktop looks right (hero card spans 2 rows).
+- Marquee scrolls smoothly, pauses on hover, wordmarks recolour ink + gold dot.
+- Stats count up once when scrolled into view (not every scroll).
+- CTA band inverts nicely (paper button on ink bg).
+- Full-page Lighthouse — perf/accessibility/SEO all 95+ (real-image replacement in ADIM 11 will affect LCP).
+
+**Up next:** ADIM 5 — About page (agency story, values, timeline, optional team).
