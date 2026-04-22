@@ -22,7 +22,7 @@ export async function CtaBlock() {
       aria-labelledby="cta-heading"
       className="relative isolate overflow-hidden bg-ink text-paper"
     >
-      <Container className="relative py-20 md:py-24 lg:py-28">
+      <Container className="relative py-12 md:py-16 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:gap-20">
           <div className="flex flex-col gap-8">
             {/* Gold accent line */}

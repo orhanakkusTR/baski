@@ -29,7 +29,7 @@ export function StatsCounter() {
   return (
     <section
       aria-labelledby="stats-heading"
-      className="border-y border-ink/10 bg-paper py-20 md:py-24 lg:py-28"
+      className="border-y border-ink/10 bg-paper py-12 md:py-16 lg:py-20"
     >
       <Container>
         <h2 id="stats-heading" className="sr-only">

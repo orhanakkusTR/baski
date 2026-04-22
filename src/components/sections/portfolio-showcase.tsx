@@ -28,7 +28,7 @@ export async function PortfolioShowcase() {
   const [featured, ...rest] = featuredProjects;
 
   return (
-    <Container as="section" className="py-20 md:py-24 lg:py-28">
+    <Container as="section" className="py-12 md:py-16 lg:py-20">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHeading
           eyebrow={t("home.portfolio.eyebrow")}

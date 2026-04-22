@@ -67,7 +67,7 @@ must read as "larger body", not as "small heading".
 
 Tailwind's default 4-point scale (`p-4`, `gap-8`, etc.) applies everywhere. Two conventions on top:
 
-- **Section padding:** `py-20 md:py-24 lg:py-28` (80 / 96 / 112 px) on content sections. The earlier spec `py-24 md:py-32 lg:py-40` gave combined section-to-section gaps of up to 320 px on lg — more dead space than editorial whitespace. The tightened values land combined gaps in the 160–225 px range, matching Pentagram/Koto density. Featured strips (marquee bands, stat strips with a `border-y` separator) may use slightly smaller padding (`py-16 md:py-20`) because the border carries the visual break. The styleguide page is exempt — it's an internal reference, not user-facing.
+- **Section padding:** `py-12 md:py-16 lg:py-20` (48 / 64 / 80 px) on content sections. The original CLAUDE.md spec `py-24 md:py-32 lg:py-40` gave combined section-to-section gaps of 192 / 256 / 320 px — excessive dead space, not editorial whitespace. Even a first tighten (`py-20 md:py-24 lg:py-28`) landed at 160 / 192 / 224 combined, which on a tall desktop viewport still felt like blank scroll. The current values land combined gaps at 96 / 128 / 160 px — matching the density of Pentagram / Instrument / Basic Agency. Featured strips (marquee, stat strips with a `border-y` separator) use the same padding now — the border carries the visual break. The styleguide page is exempt — it's an internal reference, not user-facing.
 - **Page canvas:** 1440 px max-width with responsive inline padding. Exposed as a custom utility `container-edge` and wrapped in `<Container>` from `src/components/shared/container.tsx`. Use `<Container as="section">` for every section.
 
 ---
