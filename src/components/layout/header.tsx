@@ -59,9 +59,11 @@ export function Header() {
         <div className="container-edge flex h-full items-center justify-between gap-8">
           <Logo tone="ink" size={scrolled ? "sm" : "md"} />
 
-          {/* Desktop nav */}
+          {/* Desktop nav — shows at xl+ only. Below that (tablets and small
+              laptops, where 5 nav items + logo + LS + CTA would wrap or
+              crowd), the hamburger + fullscreen mobile menu takes over. */}
           <nav
-            className="hidden items-center gap-8 lg:flex"
+            className="hidden items-center gap-8 xl:flex"
             aria-label={t("header.primaryNav")}
           >
             {NAVIGATION.header.map((item) =>
@@ -126,7 +128,7 @@ export function Header() {
               type="button"
               onClick={() => setMobileOpen(true)}
               aria-label={t("header.openMenu")}
-              className="inline-flex items-center justify-center size-10 text-ink transition-colors hover:text-stone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold lg:hidden"
+              className="inline-flex items-center justify-center size-10 text-ink transition-colors hover:text-stone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold xl:hidden"
             >
               <Menu className="size-6" aria-hidden />
             </button>
