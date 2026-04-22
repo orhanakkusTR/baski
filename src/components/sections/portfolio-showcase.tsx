@@ -12,9 +12,10 @@ import { cn } from "@/lib/utils";
 /**
  * 03 — Featured portfolio showcase.
  *
- * Asymmetric 2-column layout: one hero card on the left spanning the full
- * height, two stacked cards on the right. Mock data for now; swap to a
- * Sanity query in ADIM 7.
+ * Same asymmetry pattern as the services grid: a hero card on the left
+ * that fills its grid row height, and a flex column of two smaller cards
+ * stacked on the right. Mock data for now; swap to a Sanity query in
+ * ADIM 7.
  */
 export async function PortfolioShowcase() {
   const t = await getTranslations();
@@ -46,20 +47,19 @@ export async function PortfolioShowcase() {
           project={hero}
           title={t(hero.titleKey)}
           category={t(`services.${hero.category}.name`)}
-          className="lg:row-span-2"
-          aspect="portrait"
           size="large"
         />
-        {rest.map((project) => (
-          <ProjectCard
-            key={project.slug}
-            project={project}
-            title={t(project.titleKey)}
-            category={t(`services.${project.category}.name`)}
-            aspect="landscape"
-            size="small"
-          />
-        ))}
+        <div className="flex flex-col gap-6 lg:gap-8">
+          {rest.map((project) => (
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              title={t(project.titleKey)}
+              category={t(`services.${project.category}.name`)}
+              size="small"
+            />
+          ))}
+        </div>
       </div>
     </Container>
   );
@@ -69,31 +69,33 @@ interface ProjectCardProps {
   project: ProjectMock;
   title: string;
   category: string;
-  aspect: "portrait" | "landscape";
   size: "large" | "small";
-  className?: string;
 }
 
-function ProjectCard({
-  project,
-  title,
-  category,
-  aspect,
-  size,
-  className,
-}: ProjectCardProps) {
+function ProjectCard({ project, title, category, size }: ProjectCardProps) {
+  const isLarge = size === "large";
+
   return (
     <Link
       href={`/portfolio/${project.slug}`}
       className={cn(
         "group/project flex flex-col gap-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
-        className,
+        // On desktop the hero project fills the full grid row height so
+        // the two stacked small cards on the right line up with its bottom.
+        isLarge && "lg:h-full",
       )}
     >
-      <div className="relative overflow-hidden">
+      <div
+        className={cn(
+          "relative overflow-hidden",
+          isLarge
+            ? "aspect-[4/5] lg:aspect-auto lg:min-h-[560px] lg:flex-1"
+            : "aspect-[3/2]",
+        )}
+      >
         <ImagePlaceholder
           label={project.imageLabel}
-          aspect={aspect === "portrait" ? "4/5" : "3/2"}
+          fill
           className="transition-transform duration-[900ms] ease-out group-hover/project:scale-[1.03]"
         />
         <div className="absolute left-4 top-4 md:left-6 md:top-6">
@@ -111,7 +113,7 @@ function ProjectCard({
           <h3
             className={cn(
               "font-display text-pretty text-ink",
-              size === "large" ? "text-h2" : "text-h3",
+              isLarge ? "text-h2" : "text-h3",
             )}
           >
             {title}

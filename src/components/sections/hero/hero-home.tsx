@@ -77,14 +77,18 @@ export function HeroHome() {
             {t("home.hero.eyebrow")}
           </motion.p>
 
-          {/* Headline — word-stagger reveal */}
+          {/* Headline — word-stagger reveal.
+              `leading-[1.1]` on the h1 gives the overflow-hidden word wrappers
+              enough vertical room for Fraunces descenders (g, p, y, j). The
+              `pb-[0.18em]` on each wrapper extends the clip area below
+              baseline so nothing gets chopped off. */}
           <motion.h1
             id="hero-heading"
             aria-label={headline}
             variants={listVariants}
             initial="hidden"
             animate="visible"
-            className="font-display text-balance text-ink text-display-xl"
+            className="font-display text-balance text-ink text-display-xl leading-[1.1]"
           >
             {words.map((segment, i) => {
               if (/^\s+$/.test(segment)) return segment;
@@ -92,7 +96,7 @@ export function HeroHome() {
                 <span
                   key={i}
                   aria-hidden
-                  className="inline-block overflow-hidden align-[0.05em]"
+                  className="inline-block overflow-hidden pb-[0.18em] align-top"
                 >
                   <motion.span
                     variants={wordVariants}

@@ -13,6 +13,12 @@ type Aspect =
 interface ImagePlaceholderProps {
   label: string;
   aspect?: Aspect;
+  /**
+   * When true, the slot stretches to fill its parent (h-full, no aspect-
+   * ratio). Use this when the parent controls height — e.g., a flex-1
+   * child in a variable-height grid cell.
+   */
+  fill?: boolean;
   tone?: "bone" | "stone" | "ink" | "paper";
   className?: string;
   /** Rendered inside the slot — e.g., a number or small caption */
@@ -54,6 +60,7 @@ const textToneMap = {
 export function ImagePlaceholder({
   label,
   aspect = "4/5",
+  fill = false,
   tone = "bone",
   className,
   children,
@@ -64,7 +71,7 @@ export function ImagePlaceholder({
       aria-label={label}
       className={cn(
         "relative w-full overflow-hidden",
-        aspectMap[aspect],
+        fill ? "h-full" : aspectMap[aspect],
         toneMap[tone],
         className,
       )}

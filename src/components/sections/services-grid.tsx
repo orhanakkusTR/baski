@@ -9,11 +9,18 @@ import { NAVIGATION, type ServiceKey } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 /**
- * 01 — Services grid
+ * 01 — Services grid.
  *
- * Editorial asymmetric layout on desktop: one hero-sized card on the left
- * occupying roughly 60% and two rows of three small cards shifting on the
- * right. On mobile, collapses to a single-column stack.
+ * Editorial asymmetric layout:
+ *   mobile   — single column, hero first, then the three smaller cards.
+ *   desktop  — 2-col grid. Hero card occupies the full left column; the
+ *              right column is a flex column of three smaller cards
+ *              stacked vertically. Grid items stretch (default) so the
+ *              left card's height matches the right column's total height.
+ *
+ * The hero card's image is `fill`-ed (h-full) on desktop so it grows to
+ * fill whatever vertical space the right column dictates — no mismatched
+ * aspect-ratio gaps.
  */
 export async function ServicesGrid() {
   const t = await getTranslations();
@@ -43,25 +50,25 @@ export async function ServicesGrid() {
         </Link>
       </div>
 
-      <div className="mt-16 grid gap-6 md:grid-cols-5 md:gap-8">
+      <div className="mt-16 grid gap-6 md:grid-cols-2 md:gap-8">
         <ServiceCard
           item={hero}
           index={0}
           large
-          className="md:col-span-3 md:row-span-2"
           label={t(`services.${hero.key}.name`)}
           description={t(`services.${hero.key}.description`)}
         />
-        {rest.map((item, i) => (
-          <ServiceCard
-            key={item.key}
-            item={item}
-            index={i + 1}
-            className="md:col-span-2"
-            label={t(`services.${item.key}.name`)}
-            description={t(`services.${item.key}.description`)}
-          />
-        ))}
+        <div className="flex flex-col gap-6 md:gap-8">
+          {rest.map((item, i) => (
+            <ServiceCard
+              key={item.key}
+              item={item}
+              index={i + 1}
+              label={t(`services.${item.key}.name`)}
+              description={t(`services.${item.key}.description`)}
+            />
+          ))}
+        </div>
       </div>
     </Container>
   );
@@ -73,7 +80,6 @@ interface ServiceCardProps {
   large?: boolean;
   label: string;
   description: string;
-  className?: string;
 }
 
 function ServiceCard({
@@ -82,20 +88,28 @@ function ServiceCard({
   large = false,
   label,
   description,
-  className,
 }: ServiceCardProps) {
   return (
     <Link
       href={item.href}
       className={cn(
         "group/card flex flex-col gap-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
-        className,
+        // On desktop the hero card fills the grid row so its height matches
+        // the right column (3 stacked small cards) — no dangling gap.
+        large && "md:h-full",
       )}
     >
-      <div className="relative overflow-hidden">
+      <div
+        className={cn(
+          "relative overflow-hidden",
+          large
+            ? "aspect-[4/5] md:aspect-auto md:min-h-[520px] md:flex-1"
+            : "aspect-[3/2]",
+        )}
+      >
         <ImagePlaceholder
           label={label}
-          aspect={large ? "4/3" : "4/5"}
+          fill
           className="transition-transform duration-700 ease-out group-hover/card:scale-[1.03]"
         />
       </div>
