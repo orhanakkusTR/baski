@@ -196,3 +196,75 @@ Added `about.*` namespace with the full Swedish B2B copy (canonical) and English
 - **Team section** stays minimal on purpose. The spec said "OPSIYONEL, şimdilik skip, placeholder olarak 'Kommer snart'". A grid of generic placeholder boxes would read worse than a clean "coming soon" pill with a real fact ("tolv personer") anchoring the section.
 
 **Up next:** ADIM 6 — Services pages (main services page + 4 detail pages: boxes, bags, corporate-print, custom).
+
+---
+
+## ADIM 5 polish — editorial hero, gold-dot heading mark, values hover (commit `3ac552e`, 2026-04-23)
+
+After the About page shipped, the user flagged three visual refinements before moving to ADIM 6:
+
+1. **About hero got an image.** The textual-only hero was re-shaped into an editorial 2-col split: portrait `ImagePlaceholder` on the left (label `Studio · Gamla stan, Stockholm`), eyebrow + h1 + description on the right. On md+ both columns are vertically centred; mobile stacks image above text. The hero still breaks out of the layout's top padding so the transparent header reads over paper.
+2. **Gold-dot heading mark.** New `src/components/shared/heading-dot.tsx` helper: strips a trailing `.` from a string and appends an em-scaled gold circle (`bg-gold size-[0.22em]`) — the same accent mark used in the logo wordmark. Headings ending in `?` pass through unchanged. Wired through `SectionHeading` automatically (wraps `heading` when it's a string), and manually on the three bespoke headings (`hero-home`, `hero-about`, `our-history`). For `hero-home` the gold dot renders *inside* the last word's motion wrapper so it reveals in sync with the word-stagger animation instead of popping in late.
+3. **Values cards get a gold hover.** Each `<li>` became a `group` with `hover:border-gold` on the top rule and `group-hover:text-gold` on the Lucide icon (300 ms transition). Subtle — the title and body copy stay ink for legibility; only the structural mark and icon warm up on interaction.
+
+Also added `about.hero.imageLabel` translation to both locales.
+
+---
+
+## ADIM 6 — Services pages (5 pages: overview + boxes / bags / corporate-print / custom)
+
+### Structure
+
+Five new pages under `src/app/[locale]/services/`:
+- `page.tsx` — overview (hero + alternating 4-row large list + CtaBlock)
+- `boxes/page.tsx` — Presentkartonger
+- `bags/page.tsx` — Papperskassar
+- `corporate-print/page.tsx` — Företagstryck
+- `custom/page.tsx` — A++ Specialproduktion
+
+Five new shared components under `src/components/sections/services/`:
+- `service-hero.tsx` — editorial 2-col split; eyebrow + h1 (HeadingDot) + tagline on left, 4/5 `ImagePlaceholder` on right (reverses spec from about-hero to give detail pages their own visual rhythm).
+- `service-feature-list.tsx` — numbered "Vad vi gör" list, sticky heading on lg+.
+- `service-materials.tsx` — "Material & efterbehandling" grid with material-group cards, each with a row of hairline tag pills naming the actual options (typographic specifications, not marketing chips).
+- `service-case-teaser.tsx` — 2-card "Related work" preview linking out to `/portfolio` (the per-project `/portfolio/[slug]` pages are still stubbed until ADIM 7).
+- `service-direct-cta.tsx` — **custom-page-only** CTA variant. Lifts the phone number out of the footer to heading scale (`text-h2`, border-l gold rule) as the primary contact path, with the quote form as secondary and email as tertiary. Still dark `bg-ink` so the page closes with the same weight as the CtaBlock elsewhere.
+
+### Overview page (/services)
+
+Deliberately **different** from the home page's 2×2 services grid — the dedicated page gives each discipline its own full-width row. `ServicesOverviewList` produces four `<li>` rows, each a single `<Link>` with a 4/5 image on one side and a stacked `01 — Label / h1 / description / Läs mer` on the other. Rows alternate image side (L–R–L–R) for magazine-index rhythm.
+
+### Detail pages — standard shape
+
+All three standard detail pages (boxes / bags / corporate-print) share: `ServiceHero` → `ServiceFeatureList (4–5 items)` → `ServiceMaterials (3–4 groups)` → `ServiceCaseTeaser (2 cases)` → `CtaBlock`. Corporate-print adds a bespoke **Volym** section between materials and CTA — three pricing-tier rows (Kort serie / Standardvolym / Storserie) with hairline-bordered tier captions and a closing disclaimer that pricing is confirmed only after signed spec and press proof (no catalogue). The three-row list deliberately does **not** display prices — the spec was "volume pricing hint, ama kesin fiyat yok."
+
+### Custom page (/services/custom)
+
+Breaks the pattern on purpose — no materials grid, no case teaser. Shape: `ServiceHero` → manifesto section (`Ring innan du briefar.`) with three paragraphs explaining the engagement model (call first, capped at 8 projects/year, engagement letter within a week) → `ServiceFeatureList (5 project-type examples)` → `ServiceDirectCta` with phone at `text-h2` scale.
+
+### Translations
+
+Expanded the `services.*` namespace in both sv.json and en.json. Existing short `services.{key}.name` + `services.{key}.description` keys preserved (used by navigation + homepage grid). New page copy nested under `services.{key}.page.*`. New `services.overview.*` namespace for the overview page. Every detail page has: `meta.{title,description}`, `hero.{eyebrow,heading,tagline,imageLabel}`, type-of-section keys, `cta.*`.
+
+Swedish copy is canonical; English is edited parallel (not literal translation). Tone: **B2B, non-marketing, specification-first** — e.g. Swedish "Stansad och automatlimmad kartong för serieproduktion från 500 enheter. Rätt val för butiksvolym och frakt" rather than "Beautiful custom boxes." Custom page opens with "Ring innan du briefar." and the phone emphasis is carried through to the dark CTA.
+
+### Type system
+
+- All detail page types import `FeatureListItem`, `MaterialGroup` and `CaseTeaserItem` from the shared section components, then build arrays from translation keys via explicit key tuples (`["rigid", "folding", "sleeve", "magnetic"] as const`) so JSON key drift triggers a type error instead of a silent runtime miss.
+- `t.raw(...)` is used to pull material tag arrays out of the JSON; cast to `string[]`.
+
+### Verified working
+
+- `/sv/tjanster`, `/sv/tjanster/kartonger`, `/sv/tjanster/kassar`, `/sv/tjanster/foretagstryck`, `/sv/tjanster/specialproduktion` → 200.
+- English equivalents (`/en/services`, `/en/services/boxes`, `/en/services/bags`, `/en/services/corporate-print`, `/en/services/custom`) → 200.
+- `tsc --noEmit` clean.
+- Custom page phone CTA renders `<a href="tel:+4680000000">` — tap-to-call works on mobile.
+- Dev-server log: no missing-translation warnings, no runtime errors (only a benign Fast Refresh notice after the large translation edit).
+
+### Deviations / notes
+
+- **Services enum key stayed `corporate`, not `corporate-print`.** The URL slug is `/services/corporate-print` (English) and `/tjanster/foretagstryck` (Swedish), but the JSON namespace key is `services.corporate` to match the pre-existing `ServiceKey` enum in `constants.ts`. Renaming the enum would have cascaded through navigation/header/footer; the URL slug already differentiates.
+- **Case teaser links out to `/portfolio`, not `/portfolio/[slug]`.** The per-project detail pages are ADIM 7 scope. The 2-card teaser renders as non-clickable `<article>` cards (no `<Link>`) with a single "Se alla projekt" link to the portfolio index. When detail pages land in ADIM 7, wrap each article in `<Link href={{pathname: "/portfolio/[slug]", params: {slug}}} />`.
+- **Volume section in corporate-print is bespoke, not a component.** Built inline in the page rather than extracting to `services/service-volume.tsx`. Rationale: none of the other service pages have a comparable section, so premature abstraction; inline keeps the structure legible.
+- **Custom page has no materials grid on purpose.** The brief framed custom as a consult-first service where the spec emerges in scoping, not on a website. Publishing a tag-pill materials grid would undermine the "Ring innan du briefar" stance.
+
+**Up next:** ADIM 7 — Portfolio system (Sanity schema + listing page + per-project detail pages).

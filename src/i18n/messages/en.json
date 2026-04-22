@@ -18,21 +18,359 @@
     "menuLabel": "Menu"
   },
   "services": {
+    "overview": {
+      "meta": {
+        "title": "Services",
+        "description": "Four packaging and print disciplines, from Stockholm to twelve countries. Gift boxes, paper bags, corporate print and bespoke production for premium brands."
+      },
+      "hero": {
+        "eyebrow": "Services",
+        "heading": "Four disciplines, one language.",
+        "description": "We work across four connected areas — rigid boxes, paper bags, corporate print and bespoke projects. Every engagement is treated with the same demand on material, construction and delivery. Choose a discipline for full scope, spec and lead time."
+      },
+      "cta": {
+        "eyebrow": "Next step",
+        "heading": "Brief in motion?",
+        "description": "Send us scope and brief and we'll come back with a proposal within 48 hours — no boilerplate pitch.",
+        "primary": "Request quote",
+        "secondary": "Contact us"
+      }
+    },
     "boxes": {
       "name": "Gift boxes",
-      "description": "Die-cut premium boxes with foil, embossing, and interior detailing for luxury brands."
+      "description": "Die-cut premium boxes with foil, embossing, and interior detailing for luxury brands.",
+      "page": {
+        "meta": {
+          "title": "Gift boxes",
+          "description": "Die-cut premium gift boxes with foil, embossing and interior construction. FSC-certified board, lithographic printing, QC in Stockholm."
+        },
+        "hero": {
+          "eyebrow": "01 — Services · Gift boxes",
+          "heading": "Boxes that hold the moment of first contact.",
+          "tagline": "We design and produce gift boxes for launches, limited editions and premium lines — with unboxing, construction and warehouse logic held in the same spec.",
+          "imageLabel": "Gift box · Foil, embossing"
+        },
+        "types": {
+          "eyebrow": "01 — What we build",
+          "heading": "Four box types we produce.",
+          "description": "Every box type has its place — we match construction to the unboxing intent and the storage volume, not the other way around.",
+          "items": {
+            "rigid": {
+              "title": "Rigid box",
+              "description": "Glued rigid board with high stiffness for premium launches and gifts. Board 1.5–3 mm; add a magnetic closure or interior foam bed for ceremonial unboxing."
+            },
+            "folding": {
+              "title": "Folding carton",
+              "description": "Die-cut, auto-glued carton for series production from 500 units. The right call for retail volume and shipping — lithographic print, embossed logotype, matte lamination as a default."
+            },
+            "sleeve": {
+              "title": "Sleeve pack",
+              "description": "Two-part construction — inner tray plus a sliding sleeve. Used when the interior surface is meant to carry brand, product, or a message that only reveals after the first motion."
+            },
+            "magnetic": {
+              "title": "Magnetic closure",
+              "description": "Rigid box with flush-fit magnets in lid and base. Provides the sound-controlled closure premium brands use to signal quality. Tested against our own in-house load standard."
+            }
+          }
+        },
+        "materials": {
+          "eyebrow": "02 — Materials & finishing",
+          "heading": "Specs we work in.",
+          "description": "FSC-certified board is the starting point. From there we pick weight and grade by construction need and run size — no unnecessary upgrades.",
+          "items": {
+            "board": {
+              "title": "Board & grade",
+              "description": "From solid bleached board (SBS) for luxury tier to recycled kraft for sustainability-led lines.",
+              "tags": ["Invercote G 240–400 gsm", "GD2", "Kraft liner", "Recycled GDv", "FSC Mix"]
+            },
+            "coating": {
+              "title": "Surface finish",
+              "description": "Lamination or UV varnish shapes the first tactile meeting. We always proof on the actual board before sign-off.",
+              "tags": ["Matte lamination", "Soft-touch", "Gloss UV", "Spot UV", "Dispersion varnish"]
+            },
+            "decoration": {
+              "title": "Decoration & emboss",
+              "description": "Foil, emboss and die-cut details are used sparingly — where they make the logotype more felt, not louder.",
+              "tags": ["Hot-foil (gold, silver, copper)", "Holographic foil", "Blind emboss", "Deboss", "Laser cut"]
+            },
+            "closure": {
+              "title": "Closure & inserts",
+              "description": "Interior construction belongs to the spec — not as an afterthought. We spec magnets, satin ribbon or foam bed at concept stage.",
+              "tags": ["Magnetic closure", "Satin ribbon", "Interior foam bed", "EVA insert", "Product seating"]
+            }
+          }
+        },
+        "cases": {
+          "eyebrow": "03 — Related work",
+          "heading": "Boxes in the wild.",
+          "description": "A selection of cases where the box construction carried the launch.",
+          "viewAll": "See all projects",
+          "items": {
+            "meridian": {
+              "label": "Meridian Liquid Labs",
+              "summary": "Signature box for a limited-edition launch with magnetic closure and holographic foil.",
+              "imageLabel": "Meridian · Signature box"
+            },
+            "lund": {
+              "label": "Lund Kosmetik",
+              "summary": "Presentation kit in matching quality — rigid board, satin ribbon, interior foam bed.",
+              "imageLabel": "Lund · Presentation kit"
+            }
+          }
+        },
+        "cta": {
+          "eyebrow": "Next step",
+          "heading": "Time to build the box?",
+          "description": "Send dimensions, volume and deadline — we'll come back with construction, material and price within 48 hours.",
+          "primary": "Request quote for boxes",
+          "secondary": "Contact us"
+        }
+      }
     },
     "bags": {
       "name": "Paper bags",
-      "description": "Sturdy carry bags with cotton handles, matte lamination, and embossing — retail and gift-ready."
+      "description": "Sturdy carry bags with cotton handles, matte lamination, and embossing — retail and gift-ready.",
+      "page": {
+        "meta": {
+          "title": "Paper bags",
+          "description": "Sturdy paper bags for retail, gifting and events. Matte lamination, hot-foil, cotton or satin handles — produced with FSC paper."
+        },
+        "hero": {
+          "eyebrow": "02 — Services · Paper bags",
+          "heading": "Bags that carry the brand past checkout.",
+          "tagline": "From laminated luxury shopping bags to embossed kraft carriers — we build paper bags that survive store traffic, weather and lighting, without the brand falling off along the way.",
+          "imageLabel": "Paper bag · Cotton handle"
+        },
+        "types": {
+          "eyebrow": "01 — What we build",
+          "heading": "Four bag types for four carry needs.",
+          "description": "We pick paper weight and handle by what is going into the bag — not by a standard size in a catalogue.",
+          "items": {
+            "luxuryShopping": {
+              "title": "Laminated luxury shopping bag",
+              "description": "Matte or soft-touch laminated kraft board with hot-foil and cotton handles. Reinforced top and base — built for repeat use and to hang in the customer's hallway."
+            },
+            "gift": {
+              "title": "Gift bag",
+              "description": "Narrower format with satin ribbon or grosgrain loops. Used as the primary wrap for a single product — not a shopping bag with a logo on it."
+            },
+            "kraft": {
+              "title": "Kraft bag, sustainability profile",
+              "description": "Unbleached or lightly tinted kraft, recycled when possible, with twisted paper handles. The right call when recycled material is part of the brand promise."
+            },
+            "eventRetail": {
+              "title": "Event & retail volume",
+              "description": "Paper bags for launches, trade shows and campaigns — produced at higher volume (5,000+), to the same QC standard as our premium line."
+            }
+          }
+        },
+        "materials": {
+          "eyebrow": "02 — Materials & finishing",
+          "heading": "Specs we work in.",
+          "description": "Paper weight carries the load; the handle carries the feel. We pick both together, never separately.",
+          "items": {
+            "paper": {
+              "title": "Paper & weight",
+              "description": "Kraft paper from 120 to 210 gsm. White, unbleached or tinted — always with a surface that keeps print legible.",
+              "tags": ["White kraft 150 gsm", "Brown kraft 180 gsm", "Cast coat 210 gsm", "FSC Mix", "Recycled kraft"]
+            },
+            "handle": {
+              "title": "Handles",
+              "description": "The handle is what sticks in memory. We choose material by carried weight, brand tone and reuse rate.",
+              "tags": ["Cotton cord", "Satin / grosgrain", "Twisted paper rope", "Flat paper handle", "Reinforced eyelet"]
+            },
+            "finish": {
+              "title": "Surface finish",
+              "description": "Lamination protects and controls gloss level. Soft-touch is only applied where we have tactile-tested the result.",
+              "tags": ["Matte lamination", "Soft-touch", "Gloss", "Spot UV", "Dispersion varnish"]
+            },
+            "print": {
+              "title": "Print & decoration",
+              "description": "Offset for multi-colour, silkscreen for specials, foil for lines meant to be felt with a finger.",
+              "tags": ["4-colour offset", "Pantone spot", "Hot-foil", "Silkscreen", "Blind emboss"]
+            }
+          }
+        },
+        "cases": {
+          "eyebrow": "03 — Related work",
+          "heading": "Bags in the wild.",
+          "description": "A selection of cases where paper weight and handle mattered as much as the print.",
+          "viewAll": "See all projects",
+          "items": {
+            "veka": {
+              "label": "Veka Stockholm",
+              "summary": "Holiday collection with hot-foil, matte lamination and cotton handles. 8,000 units.",
+              "imageLabel": "Veka · Holiday bag"
+            },
+            "meridian": {
+              "label": "Meridian Retail",
+              "summary": "Retail carry for a limited launch, sharing the visual language of the box.",
+              "imageLabel": "Meridian · Retail bag"
+            }
+          }
+        },
+        "cta": {
+          "eyebrow": "Next step",
+          "heading": "Shall we build the bag?",
+          "description": "Send dimensions, paper weight, handle choice and volume — we'll come back with a proposal within 48 hours.",
+          "primary": "Request quote for paper bags",
+          "secondary": "Contact us"
+        }
+      }
     },
     "corporate": {
       "name": "Corporate print",
-      "description": "Business cards, presentation folders, and brand collateral in matching quality."
+      "description": "Business cards, presentation folders, and brand collateral in matching quality.",
+      "page": {
+        "meta": {
+          "title": "Corporate print",
+          "description": "Internal use, external impression. Brochures, presentation folders, notebooks and event material in the same premium finish as our packaging lines."
+        },
+        "hero": {
+          "eyebrow": "03 — Services · Corporate print",
+          "heading": "For internal use, for your brand.",
+          "tagline": "Brochures, presentation folders, notebooks and stationery — produced to the same quality as our packaging lines, but built for internal volume, sales use and event rollouts.",
+          "imageLabel": "Corporate · Folder & brochure"
+        },
+        "products": {
+          "eyebrow": "01 — What we take on",
+          "heading": "Five product categories.",
+          "description": "The selection covers the printed items companies use most internally and in sales contexts. We say no to one-off business-card jobs and flyers — they don't belong here.",
+          "items": {
+            "brochures": {
+              "title": "Brochures & reports",
+              "description": "A5–A4, saddle-stitched or perfect-bound, 4-colour offset. Typical volume 500–5,000. Used for annual reports, product catalogues or investor material."
+            },
+            "folders": {
+              "title": "Presentation folders",
+              "description": "Die-cut folders with pocket, business-card slit and embossed logotype. Built for sales meetings and onboarding kits, often in sets with brochure and USB insert."
+            },
+            "notebooks": {
+              "title": "Notebooks & journals",
+              "description": "Perfect-bound or wire-O, with emboss or foiled cover. Ruled, dotted or plain — produced for internal use, client gifting or onboarding bundles."
+            },
+            "stationery": {
+              "title": "Letterheads & envelopes",
+              "description": "Letterheads, business cards and envelopes in matching grade. FSC paper as a standard, with or without embossed logotype."
+            },
+            "event": {
+              "title": "Event & trade-show material",
+              "description": "Roll-ups, signage, programmes and badges for launches and events. Short lead time — fixed 10 working-day production window."
+            }
+          }
+        },
+        "specs": {
+          "eyebrow": "02 — Materials & finishing",
+          "heading": "Specs we work in.",
+          "description": "Corporate print is not a downgraded copy of the packaging spec — same grade, same QC, same presses.",
+          "items": {
+            "paper": {
+              "title": "Paper & grade",
+              "description": "FSC-certified paper as a base. Weight is driven by binding and volume.",
+              "tags": ["Munken Pure 120–240 gsm", "Scandia 2000", "Tom & Otto Silk", "FSC Mix", "100% recycled"]
+            },
+            "finish": {
+              "title": "Finish & decoration",
+              "description": "Premium finish isn't an upsell — it's part of the base spec. Foil and emboss go where the brand mark earns it.",
+              "tags": ["Matte lamination", "Soft-touch", "Hot-foil", "Emboss", "Spot UV"]
+            },
+            "binding": {
+              "title": "Binding",
+              "description": "Choice is driven by use pattern — an annual report and a notebook shouldn't be bound the same way.",
+              "tags": ["Perfect bound", "Wire-O", "Saddle-stitched", "Swiss binding", "Hardcover"]
+            }
+          }
+        },
+        "volume": {
+          "eyebrow": "03 — B2B volume",
+          "heading": "Volume with premium finish, not luxury veneer.",
+          "description": "We produce in runs from 250 to 25,000+. Per-unit price drops with volume — the spec doesn't. Call us for a project-based quote.",
+          "rows": {
+            "small": {
+              "range": "250–1,500 units",
+              "label": "Short run",
+              "note": "Launches, events, limited campaigns. 10–15 working days lead time."
+            },
+            "medium": {
+              "range": "1,500–8,000 units",
+              "label": "Standard volume",
+              "note": "Sales material, onboarding kits and yearbooks. 15–20 working days with two press proofs."
+            },
+            "large": {
+              "range": "8,000+ units",
+              "label": "Large series",
+              "note": "Internal use, global rollouts, retail campaigns. Quote-based lead time — we plan the production together."
+            }
+          },
+          "disclaimer": "Pricing is confirmed after signed spec and press proof — there is no fixed catalogue."
+        },
+        "cta": {
+          "eyebrow": "Next step",
+          "heading": "Shall we take your corporate print to the same level?",
+          "description": "Send material spec and volume — we'll come back with production and pricing within 48 hours.",
+          "primary": "Request quote for corporate print",
+          "secondary": "Contact us"
+        }
+      }
     },
     "custom": {
       "name": "A++ Custom production",
-      "description": "Bespoke packaging builds — limited editions and flagship showcase projects."
+      "description": "Bespoke packaging builds — limited editions and flagship showcase projects.",
+      "page": {
+        "meta": {
+          "title": "A++ Custom production",
+          "description": "Flagship projects, PR kits, influencer seeding, retail launches. Call first, brief second — for projects that don't fit a standard quote."
+        },
+        "hero": {
+          "eyebrow": "04 — Services · A++ Custom production",
+          "heading": "Projects that need something other.",
+          "tagline": "Our bespoke track is reserved for projects where the standard process isn't enough — limited launches, PR boxes, event and seeding kits built from first sketch to delivered pallet with a single project owner.",
+          "imageLabel": "Custom · Limited edition kit"
+        },
+        "manifesto": {
+          "eyebrow": "01 — How we work here",
+          "heading": "Call before you brief.",
+          "body": {
+            "pitch": "Bespoke projects start with a call, not a form. Thirty minutes on the phone is enough for us to say whether we're the right fit — and that matters more than a long presentation.",
+            "terms": "We take no more than eight bespoke projects per year. Each one gets a dedicated project owner from concept to signed master, with no handovers.",
+            "close": "If we say yes, we write an engagement letter with timeline, payment model and deliverables. If we say no, we send a referral within 24 hours."
+          }
+        },
+        "examples": {
+          "eyebrow": "02 — Prior engagement types",
+          "heading": "Five project types we often land in.",
+          "description": "This list is not a menu — it indicates what we'll say yes to. Every project is scoped from zero.",
+          "items": {
+            "limitedEdition": {
+              "title": "Limited edition launch kit",
+              "description": "Capped run (100–2,000 units) that signals exclusivity. Rigid box, numbered labels, interior ritual. Built for launch events and media sampling."
+            },
+            "prKits": {
+              "title": "PR box & press kit",
+              "description": "For flagship launches and product introductions — a box opened at a desk or on camera. Construction built for photo and video moments."
+            },
+            "seeding": {
+              "title": "Influencer seeding kit",
+              "description": "Smaller runs (50–500), higher visual spend per unit. Often personalised labels and hand-packed inserts. Delivered with logistics direct to recipient."
+            },
+            "eventKits": {
+              "title": "Event & exhibition kit",
+              "description": "Booth and stage material for launch events, press rooms and galleries. Box, print, signage and transport instructions for travelling formats."
+            },
+            "flagship": {
+              "title": "Flagship & showcase projects",
+              "description": "Projects meant for trade fair, office display or portfolio. We build both production-run and display pieces in the same engagement."
+            }
+          }
+        },
+        "cta": {
+          "eyebrow": "Bespoke projects",
+          "heading": "Have something that doesn't fit a standard quote?",
+          "description": "Call us directly — we'd rather talk before either of us spends time on a brief. If it's a good fit, we write an engagement letter within a week.",
+          "quote": "Send brief via form",
+          "phoneLabel": "Call direct"
+        }
+      }
     }
   },
   "home": {

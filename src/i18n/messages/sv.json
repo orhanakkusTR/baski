@@ -18,21 +18,359 @@
     "menuLabel": "Meny"
   },
   "services": {
+    "overview": {
+      "meta": {
+        "title": "Tjänster",
+        "description": "Fyra förpacknings- och tryckdiscipliner från Stockholm till tolv länder. Presentkartonger, papperskassar, företagstryck och specialproduktion för premiummärken."
+      },
+      "hero": {
+        "eyebrow": "Tjänster",
+        "heading": "Fyra discipliner, ett språk.",
+        "description": "Vi arbetar inom fyra sammanhängande områden — kartong, papperskassar, företagstryck och specialprojekt. Varje uppdrag hanteras med samma krav på material, konstruktion och leverans. Välj disciplin för fullt scope, spec och leadtime."
+      },
+      "cta": {
+        "eyebrow": "Nästa steg",
+        "heading": "Ett uppdrag på väg in?",
+        "description": "Dela brief och scope så återkommer vi med ett förslag inom 48 timmar — utan standardpitch.",
+        "primary": "Begär offert",
+        "secondary": "Kontakta oss"
+      }
+    },
     "boxes": {
       "name": "Presentkartonger",
-      "description": "Stansade premiumkartonger med foliering, prägel och invändiga detaljer för lyxvarumärken."
+      "description": "Stansade premiumkartonger med foliering, prägel och invändiga detaljer för lyxvarumärken.",
+      "page": {
+        "meta": {
+          "title": "Presentkartonger",
+          "description": "Stansade premiumkartonger med folie, prägel och invändig konstruktion. FSC-certifierad kartong, litograferat tryck, kontrollerat i Stockholm."
+        },
+        "hero": {
+          "eyebrow": "01 — Tjänster · Presentkartonger",
+          "heading": "Kartonger som håller det de lovar vid första mötet.",
+          "tagline": "Vi designar och producerar presentkartonger för lanseringar, limiterade upplagor och premiumlinjer — med fokus på unboxing, konstruktion och lagerlogik i samma spec.",
+          "imageLabel": "Presentkartong · Foliering, prägel"
+        },
+        "types": {
+          "eyebrow": "01 — Vad vi gör",
+          "heading": "Fyra kartongtyper vi bygger.",
+          "description": "Varje kartongtyp har sin plats — vi matchar konstruktionen till unboxingmålet och lagervolymen, inte tvärtom.",
+          "items": {
+            "rigid": {
+              "title": "Styv kartong (rigid box)",
+              "description": "Ihopklistrad kartong med hög styvhet för premiumlanseringar och gåvor. Tjocklek 1,5–3 mm; lägg till magnetstängning eller invändig skumbädd för ceremoniell unboxing."
+            },
+            "folding": {
+              "title": "Vikkartong (folding carton)",
+              "description": "Stansad och automatlimmad kartong för serieproduktion från 500 enheter. Rätt val för butiksvolym och frakt — litograferat tryck, präglad logotyp, matt lamination som standard."
+            },
+            "sleeve": {
+              "title": "Sleeveförpackning",
+              "description": "Tvådels konstruktion — innerfodral och övre sleeve. Används när innersidan ska bära ett brand, en produkt eller ett budskap som visar sig först efter första rörelsen."
+            },
+            "magnetic": {
+              "title": "Magnetstängning",
+              "description": "Styv kartong med infällda magneter i lock och bas. Ger den ljudkontrollerade stängning premiumvarumärken använder för att signalera kvalitet. Testad enligt vår egen standardvikt."
+            }
+          }
+        },
+        "materials": {
+          "eyebrow": "02 — Material & efterbehandling",
+          "heading": "Specifikationer vi arbetar i.",
+          "description": "FSC-certifierad kartong är utgångspunkten. Därifrån väljer vi vikt och grade utifrån konstruktionsbehov och volym — inga onödiga uppgraderingar.",
+          "items": {
+            "board": {
+              "title": "Kartong & grade",
+              "description": "Från solid blekt kartong (SBS) för lyxnivå till återvunnen kraft för hållbarhetsprofilerade linjer.",
+              "tags": ["Invercote G 240–400 gsm", "GD2", "Kraft liner", "Återvunnen GDv", "FSC Mix"]
+            },
+            "coating": {
+              "title": "Ytbehandling",
+              "description": "Valet av laminering eller UV-lack formar det första taktila mötet. Vi provar alltid på riktig kartong innan vi signar.",
+              "tags": ["Matt lamination", "Soft-touch", "Gloss UV", "Spot UV", "Rumslack"]
+            },
+            "decoration": {
+              "title": "Dekor & prägel",
+              "description": "Folie, prägel och stansade detaljer används sparsamt — där de gör logotypen mer kännbar, inte mer skrikig.",
+              "tags": ["Hetfolie (guld, silver, koppar)", "Holografisk folie", "Blind prägel", "Debossing", "Laserstans"]
+            },
+            "closure": {
+              "title": "Stängning & tillbehör",
+              "description": "Invändig konstruktion hör till specen — inte ett eftersläng. Vi specar magnet, satinband eller skumbädd redan i konceptfasen.",
+              "tags": ["Magnetstängning", "Satinband", "Invändig skumbädd", "EVA-insats", "Produktplacering"]
+            }
+          }
+        },
+        "cases": {
+          "eyebrow": "03 — Relaterat arbete",
+          "heading": "Kartonger i skarpt läge.",
+          "description": "Ett urval case där kartongkonstruktionen bar hela lanseringen.",
+          "viewAll": "Se alla projekt",
+          "items": {
+            "meridian": {
+              "label": "Meridian Liquid Labs",
+              "summary": "Signaturkartong för limited-edition-lansering med magnetstängning och holografisk folie.",
+              "imageLabel": "Meridian · Signature box"
+            },
+            "lund": {
+              "label": "Lund Kosmetik",
+              "summary": "Presentationskit i matchande kvalitet — styv kartong, satinband, invändig skumbädd.",
+              "imageLabel": "Lund · Presentation kit"
+            }
+          }
+        },
+        "cta": {
+          "eyebrow": "Nästa steg",
+          "heading": "Dags att bygga kartongen?",
+          "description": "Dela dimensioner, volym och deadline — vi återkommer med förslag på konstruktion, material och pris inom 48 timmar.",
+          "primary": "Begär offert för kartonger",
+          "secondary": "Kontakta oss"
+        }
+      }
     },
     "bags": {
       "name": "Papperskassar",
-      "description": "Stadiga bärkassar med bomullsband, matt laminering och prägel — för butik och gåva."
+      "description": "Stadiga bärkassar med bomullsband, matt laminering och prägel — för butik och gåva.",
+      "page": {
+        "meta": {
+          "title": "Papperskassar",
+          "description": "Stadiga papperskassar för butik, gåva och event. Matt lamination, hetfolie, bomulls- eller satinbandshandtag — producerade med FSC-papper."
+        },
+        "hero": {
+          "eyebrow": "02 — Tjänster · Papperskassar",
+          "heading": "Kassar som bär varumärket efter köpet.",
+          "tagline": "Från laminerade luxury-shoppingbags till kraftkassar med prägel — vi bygger papperskassar som klarar butiksgång, väder och ljus, utan att tappa varumärket på vägen.",
+          "imageLabel": "Papperskasse · Bomullsband"
+        },
+        "types": {
+          "eyebrow": "01 — Vad vi gör",
+          "heading": "Fyra bagtyper för olika bärbehov.",
+          "description": "Vi väljer pappersvikt och handtag utifrån vad som läggs i kassen — inte utifrån en standardstorlek i en katalog.",
+          "items": {
+            "luxuryShopping": {
+              "title": "Laminerad luxury shopping bag",
+              "description": "Matt eller soft-touch laminerad kraftkartong med hetfolie och bomullsband. Förstärkt topp, förstärkt botten — byggd för upprepad användning och hängning i vardagsrummet."
+            },
+            "gift": {
+              "title": "Presentkasse",
+              "description": "Smalare format med satinband eller grosgrain-loop. Används som primär förpackning för en enstaka produkt — inte en shoppingbag med logotyp."
+            },
+            "kraft": {
+              "title": "Kraftkasse, hållbarhetsprofil",
+              "description": "Oblekt eller lätt tonad kraft, återvunnen när det går, med torsionshandtag. Rätt val när återvunnen materialprofil är varumärkeslöftet."
+            },
+            "eventRetail": {
+              "title": "Event- och retailvolym",
+              "description": "Papperskassar för lansering, mässa och kampanj — producerade i högre volym (5 000+), med samma QC som vår premiumlinje."
+            }
+          }
+        },
+        "materials": {
+          "eyebrow": "02 — Material & efterbehandling",
+          "heading": "Specifikationer vi arbetar i.",
+          "description": "Pappersvikten styr bärkraften, handtaget styr känslan. Vi väljer båda tillsammans, aldrig separat.",
+          "items": {
+            "paper": {
+              "title": "Papper & vikt",
+              "description": "Kraftpapper från 120 till 210 gsm. Vita, obleka eller tonade — alltid med en ytstruktur som inte skymmer trycket.",
+              "tags": ["White kraft 150 gsm", "Brown kraft 180 gsm", "Cast coat 210 gsm", "FSC Mix", "Recycled kraft"]
+            },
+            "handle": {
+              "title": "Handtag",
+              "description": "Handtaget är det som håller i minnet. Vi väljer material efter bärvikt, brand-ton och återanvändningsgrad.",
+              "tags": ["Bomullsband", "Satin / grosgrain", "Pappersrep (torsion)", "Flat pappershandtag", "Förstärkt ögla"]
+            },
+            "finish": {
+              "title": "Ytbehandling",
+              "description": "Laminering både skyddar och styr glansnivån. Soft-touch läggs bara där vi verifierat det taktilt.",
+              "tags": ["Matt lamination", "Soft-touch", "Gloss", "Spot UV", "Rumslack"]
+            },
+            "print": {
+              "title": "Tryck & dekor",
+              "description": "Offset för flerfärg, silkscreen för specialeffekter, folie för linjer som ska kunna kännas med fingret.",
+              "tags": ["4-färg offset", "Pantone spot", "Hetfolie", "Silkscreen", "Blind prägel"]
+            }
+          }
+        },
+        "cases": {
+          "eyebrow": "03 — Relaterat arbete",
+          "heading": "Kassar i skarpt läge.",
+          "description": "Urval case där pappersvikten och handtaget var lika viktiga som trycket.",
+          "viewAll": "Se alla projekt",
+          "items": {
+            "veka": {
+              "label": "Veka Stockholm",
+              "summary": "Holiday-kollektion med hetfolie, matt lamination och bomullsband. 8 000 enheter.",
+              "imageLabel": "Veka · Holiday bag"
+            },
+            "meridian": {
+              "label": "Meridian Retail",
+              "summary": "Butikskasse för limited lansering, samma visuella språk som kartongen.",
+              "imageLabel": "Meridian · Retail bag"
+            }
+          }
+        },
+        "cta": {
+          "eyebrow": "Nästa steg",
+          "heading": "Ska vi bygga kassen?",
+          "description": "Dela dimensioner, pappersvikt, handtagsval och volym — vi återkommer med förslag inom 48 timmar.",
+          "primary": "Begär offert för papperskassar",
+          "secondary": "Kontakta oss"
+        }
+      }
     },
     "corporate": {
       "name": "Företagstryck",
-      "description": "Visitkort, presentationsfoldrar och profilmaterial i matchande kvalitet."
+      "description": "Visitkort, presentationsfoldrar och profilmaterial i matchande kvalitet.",
+      "page": {
+        "meta": {
+          "title": "Företagstryck",
+          "description": "Internt bruk, yttre intryck. Broschyrer, presentationsmappar, anteckningsböcker och eventmaterial i samma premiumfinish som våra förpackningslinjer."
+        },
+        "hero": {
+          "eyebrow": "03 — Tjänster · Företagstryck",
+          "heading": "För eget bruk, för ditt varumärke.",
+          "tagline": "Broschyrer, presentationsmappar, anteckningsböcker och brevpapper — producerat i samma kvalitet som våra förpackningslinjer, men byggt för intern volym, sälj- och eventbruk.",
+          "imageLabel": "Företagstryck · Mapp & broschyr"
+        },
+        "products": {
+          "eyebrow": "01 — Vad vi tar",
+          "heading": "Fem produktkategorier.",
+          "description": "Urvalet täcker det tryck företag använder mest internt och i säljsammanhang. Vi säger nej till enstaka visitkortsuppdrag och flyers — de hör inte hemma här.",
+          "items": {
+            "brochures": {
+              "title": "Broschyrer & rapporter",
+              "description": "A5–A4, trådhäftat eller limbundet, 4-färg offset. Typisk volym 500–5 000. Används för årsredovisning, produktkatalog eller investerarmaterial."
+            },
+            "folders": {
+              "title": "Presentationsmappar",
+              "description": "Stansade mappar med ficka, visitkortsslits och präglad logotyp. Byggt för säljmöten och onboarding-kit, ofta i set med broschyr och USB-insert."
+            },
+            "notebooks": {
+              "title": "Anteckningsböcker & dagböcker",
+              "description": "Limbundet eller wire-O, med prägel eller folieomslag. Linjerat, rutigt eller blankt papper — för internbruk, kunduppvaktning eller onboarding-paket."
+            },
+            "stationery": {
+              "title": "Brevpapper & kuvert",
+              "description": "Letterheads, visitkort och kuvert i matchande grade. Vi arbetar med FSC-papper som standard, med eller utan präglad logotyp."
+            },
+            "event": {
+              "title": "Event- & mässmaterial",
+              "description": "Roll-ups, skyltar, programblad och badges för lanseringar och event. Kort leadtime — fast produktionstid på 10 arbetsdagar."
+            }
+          }
+        },
+        "specs": {
+          "eyebrow": "02 — Material & efterbehandling",
+          "heading": "Specifikationer vi arbetar i.",
+          "description": "Företagstryck är inte en nedprioriterad kopia av förpackningsspecen — samma grade, samma QC, samma pressar.",
+          "items": {
+            "paper": {
+              "title": "Papper & grade",
+              "description": "FSC-certifierat papper som grundval. Vikt styrs av bindning och volym.",
+              "tags": ["Munken Pure 120–240 gsm", "Scandia 2000", "Tom & Otto Silk", "FSC Mix", "Återvunnen 100%"]
+            },
+            "finish": {
+              "title": "Ytbehandling & dekor",
+              "description": "Premiumfinish är inget tillägg — det ingår i grundspecen. Folie och prägel används där brand-marken tjänar på det.",
+              "tags": ["Matt lamination", "Soft-touch", "Hetfolie", "Prägel", "Spot UV"]
+            },
+            "binding": {
+              "title": "Bindning",
+              "description": "Valet styrs av användningsmönstret — en årsredovisning och en anteckningsbok ska inte bindas likadant.",
+              "tags": ["Limbundet", "Wire-O", "Trådhäftat", "Schweizisk bindning", "Hårdpärm"]
+            }
+          }
+        },
+        "volume": {
+          "eyebrow": "03 — B2B-volym",
+          "heading": "Volym med premiumfinish, inte lyxskal.",
+          "description": "Vi producerar i serier från 250 till 25 000+. Pris per enhet sjunker med volymen — men specen sjunker inte med det. Ring för projektbaserad offert.",
+          "rows": {
+            "small": {
+              "range": "250–1 500 enheter",
+              "label": "Kort serie",
+              "note": "Lansering, event, limiterade kampanjer. 10–15 arbetsdagars leadtime."
+            },
+            "medium": {
+              "range": "1 500–8 000 enheter",
+              "label": "Standardvolym",
+              "note": "Säljmaterial, onboarding-kit och årsböcker. 15–20 arbetsdagar med två provtryck."
+            },
+            "large": {
+              "range": "8 000+ enheter",
+              "label": "Storserie",
+              "note": "Internbruk, global rollout, retail-kampanj. Offertbaserad leadtime — vi planerar produktionen tillsammans."
+            }
+          },
+          "disclaimer": "Priser bekräftas först efter signerad spec och provtryck — ingen fast katalog."
+        },
+        "cta": {
+          "eyebrow": "Nästa steg",
+          "heading": "Ska vi ta ditt företagstryck till samma nivå?",
+          "description": "Dela materialspec och volym — vi återkommer med produktions- och prisförslag inom 48 timmar.",
+          "primary": "Begär offert för företagstryck",
+          "secondary": "Kontakta oss"
+        }
+      }
     },
     "custom": {
       "name": "A++ Specialproduktion",
-      "description": "Egenutvecklade förpackningar — limiterade upplagor och showcase-projekt."
+      "description": "Egenutvecklade förpackningar — limiterade upplagor och showcase-projekt.",
+      "page": {
+        "meta": {
+          "title": "A++ Specialproduktion",
+          "description": "Flaggskeppsprojekt, PR-kit, influencer seeding, retail launches. Samtal först, brief sedan — för projekt som inte passar i en standardoffert."
+        },
+        "hero": {
+          "eyebrow": "04 — Tjänster · A++ Specialproduktion",
+          "heading": "Projekt som kräver något annat.",
+          "tagline": "Vår specialproduktion är reserverad för projekt där standardprocessen inte räcker — limiterade lanseringar, PR-bokar, event- och seeding-kit som ska byggas från första skiss till levererad pall med en enda projektägare.",
+          "imageLabel": "Special · Limited edition kit"
+        },
+        "manifesto": {
+          "eyebrow": "01 — Så arbetar vi här",
+          "heading": "Ring innan du briefar.",
+          "body": {
+            "pitch": "Specialprojekt börjar med ett samtal, inte ett formulär. En halvtimme över telefon räcker för att vi ska kunna säga om vi passar uppdraget — och det är viktigare än en lång presentation.",
+            "terms": "Vi tar högst åtta specialprojekt per år. Varje projekt får en dedikerad projektägare från konceptfas till signerad master, utan överlämningar.",
+            "close": "Om vi säger ja skriver vi ett uppdragsbrev med tidplan, betalningsmodell och deliverables. Om vi säger nej ger vi en referensrekommendation inom 24 timmar."
+          }
+        },
+        "examples": {
+          "eyebrow": "02 — Exempel på tidigare uppdrag",
+          "heading": "Fem projekttyper vi ofta hamnar i.",
+          "description": "Listan är ingen meny — den är en indikation på vad vi kan säga ja till. Varje projekt skalas om från grunden.",
+          "items": {
+            "limitedEdition": {
+              "title": "Limited edition-kit för lansering",
+              "description": "Begränsad upplaga (100–2 000 enheter) som signalerar exklusivitet. Styv kartong, numrerade etiketter, invändig ritual. Byggt för launch-event och media-sampling."
+            },
+            "prKits": {
+              "title": "PR-box & journalistkit",
+              "description": "För stora lanseringar och produktintroduktioner — en kartong som öppnas vid skrivbord eller framför kamera. Konstruktion byggd för foto- och video-moment."
+            },
+            "seeding": {
+              "title": "Influencer seeding-kit",
+              "description": "Mindre serier (50–500), högre visual-per-enhet. Ofta personaliserade etiketter och handstoppade innersidor. Levereras med logistikstöd direkt till mottagare."
+            },
+            "eventKits": {
+              "title": "Event- & utställningskit",
+              "description": "Monter- och scenmaterial för lanseringsevent, pressmöten och gallerier. Inkluderar kartong, tryck, skyltar och transportinstruktion för turnerande format."
+            },
+            "flagship": {
+              "title": "Flaggskepps- och showcase-projekt",
+              "description": "Projekt som ska visas på mässa, på kontor eller i portfolion. Vi bygger både produktionsbara och utställningsexemplar i samma uppdrag."
+            }
+          }
+        },
+        "cta": {
+          "eyebrow": "Specialprojekt",
+          "heading": "Har du något som inte passar i en standardoffert?",
+          "description": "Ring direkt, så pratar vi innan någon av oss ägnar tid åt en brief. Om det är en bra passform skriver vi uppdragsbrev inom en vecka.",
+          "quote": "Skicka brief via formulär",
+          "phoneLabel": "Ring direkt"
+        }
+      }
     }
   },
   "home": {
