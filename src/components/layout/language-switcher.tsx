@@ -63,7 +63,7 @@ export function LanguageSwitcher({
               onClick={() => switchTo(locale)}
               aria-current={isActive ? "true" : undefined}
               className={cn(
-                "transition-colors duration-150",
+                "px-1 py-2 transition-colors duration-150",
                 "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
                 isActive ? activeClass : mutedClass,
                 isActive && "font-semibold",

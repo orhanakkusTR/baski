@@ -78,17 +78,20 @@ export function HeroHome() {
           </motion.p>
 
           {/* Headline — word-stagger reveal.
-              `leading-[1.1]` on the h1 gives the overflow-hidden word wrappers
-              enough vertical room for Fraunces descenders (g, p, y, j). The
-              `pb-[0.18em]` on each wrapper extends the clip area below
-              baseline so nothing gets chopped off. */}
+              `leading-[1.1]` gives the overflow-hidden word wrappers enough
+              vertical room for Fraunces descenders; `pb-[0.18em]` extends
+              the clip area below baseline so nothing gets chopped off.
+              `hyphens-auto` + `break-words` + `max-w-full` on wrappers
+              ensure long Swedish compounds (e.g. Premiumförpackningar)
+              break cleanly on narrow mobiles instead of overflowing. */}
           <motion.h1
             id="hero-heading"
             aria-label={headline}
+            lang="sv"
             variants={listVariants}
             initial="hidden"
             animate="visible"
-            className="font-display text-balance text-ink text-display-xl leading-[1.1]"
+            className="font-display text-balance text-ink text-display-xl leading-[1.1] hyphens-auto break-words"
           >
             {words.map((segment, i) => {
               if (/^\s+$/.test(segment)) return segment;
@@ -96,11 +99,11 @@ export function HeroHome() {
                 <span
                   key={i}
                   aria-hidden
-                  className="inline-block overflow-hidden pb-[0.18em] align-top"
+                  className="inline-block max-w-full overflow-hidden pb-[0.18em] align-top break-words"
                 >
                   <motion.span
                     variants={wordVariants}
-                    className="inline-block"
+                    className="inline-block max-w-full break-words"
                   >
                     {segment}
                   </motion.span>

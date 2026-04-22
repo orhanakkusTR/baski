@@ -128,7 +128,7 @@ export function Header() {
               type="button"
               onClick={() => setMobileOpen(true)}
               aria-label={t("header.openMenu")}
-              className="inline-flex items-center justify-center size-10 text-ink transition-colors hover:text-stone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold xl:hidden"
+              className="inline-flex size-11 items-center justify-center text-ink transition-colors hover:text-stone focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold xl:hidden"
             >
               <Menu className="size-6" aria-hidden />
             </button>
