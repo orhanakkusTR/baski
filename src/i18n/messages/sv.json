@@ -1,1 +1,61 @@
-{}
+{
+  "nav": {
+    "home": "Hem",
+    "services": "Tjänster",
+    "portfolio": "Arbeten",
+    "process": "Process",
+    "about": "Om oss",
+    "contact": "Kontakt",
+    "quote": "Begär offert",
+    "learnMore": "Läs mer"
+  },
+  "header": {
+    "cta": "Begär offert",
+    "primaryNav": "Huvudnavigation",
+    "openMenu": "Öppna menyn",
+    "closeMenu": "Stäng menyn",
+    "close": "Stäng",
+    "menuLabel": "Meny"
+  },
+  "services": {
+    "boxes": {
+      "name": "Presentkartonger",
+      "description": "Stansade premiumkartonger med foliering, prägel och invändiga detaljer för lyxvarumärken."
+    },
+    "bags": {
+      "name": "Papperskassar",
+      "description": "Stadiga bärkassar med bomullsband, matt laminering och prägel — för butik och gåva."
+    },
+    "corporate": {
+      "name": "Företagstryck",
+      "description": "Visitkort, presentationsfoldrar och profilmaterial i matchande kvalitet."
+    },
+    "custom": {
+      "name": "A++ Specialproduktion",
+      "description": "Egenutvecklade förpackningar — limiterade upplagor och showcase-projekt."
+    }
+  },
+  "footer": {
+    "tagline": {
+      "eyebrow": "AW AB · Sedan 2019",
+      "body": "Vi bygger förpackningar som ser ut som varumärket känner sig."
+    },
+    "columns": {
+      "services": "Tjänster",
+      "company": "Företaget",
+      "contact": "Kontakt",
+      "legal": "Juridik"
+    },
+    "links": {
+      "privacy": "Integritetspolicy",
+      "terms": "Villkor",
+      "cookies": "Cookies"
+    },
+    "addressLabel": "Kontor",
+    "orgLabel": "Org.nr",
+    "vatLabel": "Moms",
+    "viewAll": "Se alla tjänster",
+    "legalNav": "Juridiska länkar",
+    "copyright": "© {year} AW AB. Alla rättigheter förbehållna."
+  }
+}

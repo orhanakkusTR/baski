@@ -1,1 +1,61 @@
-{}
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Work",
+    "process": "Process",
+    "about": "About",
+    "contact": "Contact",
+    "quote": "Request quote",
+    "learnMore": "Learn more"
+  },
+  "header": {
+    "cta": "Request quote",
+    "primaryNav": "Primary navigation",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "close": "Close",
+    "menuLabel": "Menu"
+  },
+  "services": {
+    "boxes": {
+      "name": "Gift boxes",
+      "description": "Die-cut premium boxes with foil, embossing, and interior detailing for luxury brands."
+    },
+    "bags": {
+      "name": "Paper bags",
+      "description": "Sturdy carry bags with cotton handles, matte lamination, and embossing — retail and gift-ready."
+    },
+    "corporate": {
+      "name": "Corporate print",
+      "description": "Business cards, presentation folders, and brand collateral in matching quality."
+    },
+    "custom": {
+      "name": "A++ Custom production",
+      "description": "Bespoke packaging builds — limited editions and flagship showcase projects."
+    }
+  },
+  "footer": {
+    "tagline": {
+      "eyebrow": "AW AB · Since 2019",
+      "body": "We build packaging that looks how your brand feels."
+    },
+    "columns": {
+      "services": "Services",
+      "company": "Company",
+      "contact": "Contact",
+      "legal": "Legal"
+    },
+    "links": {
+      "privacy": "Privacy policy",
+      "terms": "Terms",
+      "cookies": "Cookies"
+    },
+    "addressLabel": "Office",
+    "orgLabel": "Org. no",
+    "vatLabel": "VAT",
+    "viewAll": "View all services",
+    "legalNav": "Legal links",
+    "copyright": "© {year} AW AB. All rights reserved."
+  }
+}
