@@ -47,7 +47,9 @@ function ClientWordmark({ name }: { name: string }) {
         aria-hidden
         className="block size-1.5 rounded-full bg-stone/40 transition-colors duration-300 ease-out group-hover:bg-gold"
       />
-      <span className="font-display text-h3 leading-none tracking-[-0.02em] text-stone/60 transition-colors duration-300 ease-out group-hover:text-ink">
+      {/* pb-[0.15em] keeps Fraunces descenders (g, p, y, j) inside the wordmark's
+          box so the marquee container's overflow-hidden doesn't clip them. */}
+      <span className="font-display text-h3 leading-none tracking-[-0.02em] text-stone/60 pb-[0.15em] transition-colors duration-300 ease-out group-hover:text-ink">
         {name}
       </span>
     </span>
