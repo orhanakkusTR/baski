@@ -11,23 +11,20 @@ import { cn } from "@/lib/utils";
 /**
  * 01 — Services grid.
  *
- * Editorial asymmetric layout:
- *   mobile   — single column, hero first, then the three smaller cards.
- *   desktop  — 2-col grid. Hero card occupies the full left column; the
- *              right column is a flex column of three smaller cards
- *              stacked vertically. Grid items stretch (default) so the
- *              left card's height matches the right column's total height.
+ * Four services, equal weight — so the grid is deliberately uniform:
+ *   mobile (default) — one column, stack all four.
+ *   desktop (md+)    — 2×2 grid, every card the same aspect-[3/2] landscape.
  *
- * The hero card's image is `fill`-ed (h-full) on desktop so it grows to
- * fill whatever vertical space the right column dictates — no mismatched
- * aspect-ratio gaps.
+ * An earlier 1-big-left + 3-small-right asymmetric layout forced the hero
+ * card to match the sum-height of three stacked right-column cards, which
+ * produced a ~900px-tall vertical slab no real packaging photo could fill.
+ * Equal treatment across all four reads more like Pentagram's service
+ * indexes and respects the fact that none of the four is promoted over
+ * the others in navigation.
  */
 export async function ServicesGrid() {
   const t = await getTranslations();
   const items = NAVIGATION.footer.services;
-
-  const hero = items[0];
-  const rest = items.slice(1);
 
   return (
     <Container as="section" className="py-24 md:py-32 lg:py-40">
@@ -50,25 +47,16 @@ export async function ServicesGrid() {
         </Link>
       </div>
 
-      <div className="mt-16 grid gap-6 md:grid-cols-2 md:gap-8">
-        <ServiceCard
-          item={hero}
-          index={0}
-          large
-          label={t(`services.${hero.key}.name`)}
-          description={t(`services.${hero.key}.description`)}
-        />
-        <div className="flex flex-col gap-6 md:gap-8">
-          {rest.map((item, i) => (
-            <ServiceCard
-              key={item.key}
-              item={item}
-              index={i + 1}
-              label={t(`services.${item.key}.name`)}
-              description={t(`services.${item.key}.description`)}
-            />
-          ))}
-        </div>
+      <div className="mt-16 grid gap-10 md:grid-cols-2 md:gap-x-8 md:gap-y-14">
+        {items.map((item, i) => (
+          <ServiceCard
+            key={item.key}
+            item={item}
+            index={i}
+            label={t(`services.${item.key}.name`)}
+            description={t(`services.${item.key}.description`)}
+          />
+        ))}
       </div>
     </Container>
   );
@@ -77,36 +65,17 @@ export async function ServicesGrid() {
 interface ServiceCardProps {
   item: { key: ServiceKey; href: string };
   index: number;
-  large?: boolean;
   label: string;
   description: string;
 }
 
-function ServiceCard({
-  item,
-  index,
-  large = false,
-  label,
-  description,
-}: ServiceCardProps) {
+function ServiceCard({ item, index, label, description }: ServiceCardProps) {
   return (
     <Link
       href={item.href}
-      className={cn(
-        "group/card flex flex-col gap-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
-        // On desktop the hero card fills the grid row so its height matches
-        // the right column (3 stacked small cards) — no dangling gap.
-        large && "md:h-full",
-      )}
+      className="group/card flex flex-col gap-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
     >
-      <div
-        className={cn(
-          "relative overflow-hidden",
-          large
-            ? "aspect-[4/5] md:aspect-auto md:min-h-[520px] md:flex-1"
-            : "aspect-[3/2]",
-        )}
-      >
+      <div className="relative overflow-hidden aspect-[3/2]">
         <ImagePlaceholder
           label={label}
           fill
@@ -114,22 +83,22 @@ function ServiceCard({
         />
       </div>
 
-      <div className="flex items-baseline justify-between gap-4">
-        <span className="font-mono text-caption uppercase text-stone">
-          {String(index + 1).padStart(2, "0")} · {label}
-        </span>
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-2">
+          <span className="font-mono text-caption uppercase text-stone">
+            {String(index + 1).padStart(2, "0")} — {label}
+          </span>
+          <h3 className="font-display text-h3 text-ink">
+            {label}
+          </h3>
+        </div>
         <ArrowUpRight
           aria-hidden
-          className="size-4 text-ink transition-transform duration-300 ease-out group-hover/card:-translate-y-0.5 group-hover/card:translate-x-0.5"
+          className="mt-1 size-5 shrink-0 text-ink transition-transform duration-300 ease-out group-hover/card:-translate-y-0.5 group-hover/card:translate-x-0.5"
         />
       </div>
 
-      <p
-        className={cn(
-          "text-pretty text-stone",
-          large ? "max-w-xl text-body-lg" : "text-body",
-        )}
-      >
+      <p className="max-w-md text-pretty text-body text-stone">
         {description}
       </p>
     </Link>

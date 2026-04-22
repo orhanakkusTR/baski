@@ -10,16 +10,22 @@ import { featuredProjects, type ProjectMock } from "@/lib/mock-projects";
 import { cn } from "@/lib/utils";
 
 /**
- * 03 — Featured portfolio showcase.
+ * 02 — Featured portfolio showcase.
  *
- * Same asymmetry pattern as the services grid: a hero card on the left
- * that fills its grid row height, and a flex column of two smaller cards
- * stacked on the right. Mock data for now; swap to a Sanity query in
- * ADIM 7.
+ * Editorial "feature + supporting" layout for exactly three projects:
+ *   1. A single full-width hero project up top (aspect 16/9 landscape) —
+ *      the most recent / flagship case. Reads like a magazine opener.
+ *   2. Two supporting projects in a 2-col row below (aspect 3/2 each).
+ *
+ * The previous 1-big-left + 2-stacked-right pattern made the hero image
+ * stretch to match the sum of the right column (~1100 px tall at ~500 px
+ * wide) — no real project photo fits that aspect naturally. A banner +
+ * row reads like a case-study index and lets every image live at a
+ * sensible landscape ratio.
  */
 export async function PortfolioShowcase() {
   const t = await getTranslations();
-  const [hero, ...rest] = featuredProjects;
+  const [featured, ...rest] = featuredProjects;
 
   return (
     <Container as="section" className="py-24 md:py-32 lg:py-40">
@@ -42,14 +48,17 @@ export async function PortfolioShowcase() {
         </Link>
       </div>
 
-      <div className="mt-16 grid gap-6 lg:grid-cols-2 lg:gap-8">
+      <div className="mt-16 flex flex-col gap-10 md:gap-14">
+        {/* Featured hero — full width, landscape banner */}
         <ProjectCard
-          project={hero}
-          title={t(hero.titleKey)}
-          category={t(`services.${hero.category}.name`)}
-          size="large"
+          project={featured}
+          title={t(featured.titleKey)}
+          category={t(`services.${featured.category}.name`)}
+          size="hero"
         />
-        <div className="flex flex-col gap-6 lg:gap-8">
+
+        {/* Supporting projects — 2-col row */}
+        <div className="grid gap-10 md:grid-cols-2 md:gap-8">
           {rest.map((project) => (
             <ProjectCard
               key={project.slug}
@@ -69,28 +78,21 @@ interface ProjectCardProps {
   project: ProjectMock;
   title: string;
   category: string;
-  size: "large" | "small";
+  size: "hero" | "small";
 }
 
 function ProjectCard({ project, title, category, size }: ProjectCardProps) {
-  const isLarge = size === "large";
+  const isHero = size === "hero";
 
   return (
     <Link
       href={`/portfolio/${project.slug}`}
-      className={cn(
-        "group/project flex flex-col gap-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
-        // On desktop the hero project fills the full grid row height so
-        // the two stacked small cards on the right line up with its bottom.
-        isLarge && "lg:h-full",
-      )}
+      className="group/project flex flex-col gap-5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
     >
       <div
         className={cn(
           "relative overflow-hidden",
-          isLarge
-            ? "aspect-[4/5] lg:aspect-auto lg:min-h-[560px] lg:flex-1"
-            : "aspect-[3/2]",
+          isHero ? "aspect-[3/2] md:aspect-[16/9]" : "aspect-[3/2]",
         )}
       >
         <ImagePlaceholder
@@ -105,7 +107,12 @@ function ProjectCard({ project, title, category, size }: ProjectCardProps) {
         </div>
       </div>
 
-      <div className="flex items-start justify-between gap-6">
+      <div
+        className={cn(
+          "flex items-start justify-between gap-6",
+          isHero && "md:gap-10",
+        )}
+      >
         <div className="flex flex-col gap-2">
           <span className="font-mono text-caption uppercase text-stone">
             {project.client} · {project.year}
@@ -113,7 +120,7 @@ function ProjectCard({ project, title, category, size }: ProjectCardProps) {
           <h3
             className={cn(
               "font-display text-pretty text-ink",
-              isLarge ? "text-h2" : "text-h3",
+              isHero ? "text-h1 md:text-display-lg" : "text-h3",
             )}
           >
             {title}
@@ -121,7 +128,10 @@ function ProjectCard({ project, title, category, size }: ProjectCardProps) {
         </div>
         <ArrowUpRight
           aria-hidden
-          className="size-5 shrink-0 text-ink transition-transform duration-300 ease-out group-hover/project:-translate-y-0.5 group-hover/project:translate-x-0.5"
+          className={cn(
+            "shrink-0 text-ink transition-transform duration-300 ease-out group-hover/project:-translate-y-0.5 group-hover/project:translate-x-0.5",
+            isHero ? "mt-2 size-6" : "mt-1 size-5",
+          )}
         />
       </div>
     </Link>
