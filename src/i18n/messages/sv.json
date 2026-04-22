@@ -537,6 +537,125 @@
       "secondary": "Kontakta oss"
     }
   },
+  "process": {
+    "meta": {
+      "title": "Process",
+      "description": "Så arbetar AW AB — fem steg från brief till levererad pall. Typiska ledtider 8–14 veckor. FAQ om lead time, volym, certifieringar, NDA och prissättning."
+    },
+    "hero": {
+      "eyebrow": "Process",
+      "heading": "Från idé till leverans.",
+      "description": "Vi arbetar i fem definierade steg — varje steg har ett tydligt startvillkor och en sign-off innan nästa tar vid. Ingen del av processen är ad-hoc. Det är så vi håller tidplan, spec och pris."
+    },
+    "timeline": {
+      "stepLabel": "Steg {n}",
+      "duration": "Typisk tid",
+      "deliverables": "Leverabler",
+      "steps": {
+        "brief": {
+          "title": "Brief & Discovery",
+          "description": "Vi inleder med en scoping-session — antingen på plats hos er eller digitalt. Vi vill se produkten, läsa brand-boken och förstå både butiksögonblicket och lagerbegränsningarna innan vi pratar konstruktion. Vi säger nej tidigt om vi inte ser passform.",
+          "duration": "1–2 veckor",
+          "deliverables": [
+            "Kick-off workshop (on-site eller digitalt)",
+            "Brand- och materialaudit",
+            "Teknisk förstudie",
+            "Signerat scope-dokument"
+          ]
+        },
+        "concept": {
+          "title": "Koncept & Design",
+          "description": "Vi presenterar två till tre konceptriktningar. Varje riktning innehåller moodbild, fysiska materialprover och en teknisk skiss på konstruktionen. Inga generiska renders — vi lägger riktigt papper på bordet så ni kan känna beslutet innan det tas.",
+          "duration": "2–3 veckor",
+          "deliverables": [
+            "2–3 konceptriktningar med moodboards",
+            "Fysiska materialprover",
+            "Tekniska ritningar (CAD)",
+            "Indikativ produktionskostnad per riktning"
+          ]
+        },
+        "prototype": {
+          "title": "Prototyp & Godkännande",
+          "description": "En fysisk prototyp byggs för hand och skickas till ert kontor. Vi kör också certifierade provtryck för färgkritiska specar. Inget går i produktion innan det finns en signerad masterprototyp i era lokaler.",
+          "duration": "2–3 veckor",
+          "deliverables": [
+            "En till tre handbyggda prototyper",
+            "Certifierade provtryck",
+            "Detaljerad produktionsspec",
+            "Signerad masterprototyp"
+          ]
+        },
+        "production": {
+          "title": "Produktion",
+          "description": "Produktionen körs på certifierade pressar hos partners i Sverige, Tyskland och Italien. Varje skift loggas; vi är med vid press-set-up och på första färdiga enheten per SKU. Slumpmässiga QC-uttag under körning jämförs mot den signerade mastern.",
+          "duration": "3–6 veckor",
+          "deliverables": [
+            "Press-set-up övervakad på plats",
+            "Slumpmässig QC-kontroll under körning",
+            "Slutkvalitetskontroll mot signerad master",
+            "Produktionsrapport med batch-spårning"
+          ]
+        },
+        "delivery": {
+          "title": "Leverans & Uppföljning",
+          "description": "Frakt och logistik är en del av leveransen — palletering, tull och lageradress planeras redan i steg 01, inte i sista minuten. Vi följer upp två veckor efter leverans för att bekräfta vad som hamnade i butik, på lager och i användning.",
+          "duration": "1–2 veckor",
+          "deliverables": [
+            "Fraktplanering och tullhantering",
+            "Palletering och batch-märkning",
+            "Leveransbekräftelse till era lager",
+            "Uppföljningsmöte 14 dagar efter leverans"
+          ]
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "Vanliga frågor",
+      "heading": "Vad inköp brukar fråga först.",
+      "description": "Åtta frågor vi brukar få i scoping-fasen — lead time, volym, certifieringar, NDA, prissättning. Om din fråga inte står här, ring direkt.",
+      "items": {
+        "duration": {
+          "q": "Hur lång tid tar produktionen?",
+          "a": "Standard är 8–14 veckor från signerad spec till levererad pall, beroende på kvantitet och material. Specialprojekt och egenutvecklade kit tar 12–16 veckor. Vi bygger buffer in i tidplanen från början — inte som en efterjustering när något glider."
+        },
+        "volume": {
+          "q": "Vilka mängder arbetar ni med?",
+          "a": "Från 100 enheter för limited edition och custom-kit, upp till 50 000+ för retail-volym. Under 100 enheter säger vi vanligtvis nej eller hänvisar vidare — uppsättningskostnaderna räknar inte hem sig på den skalan. Inget övre tak."
+        },
+        "shipping": {
+          "q": "Kan ni hantera internationell leverans?",
+          "a": "Ja. Vi skeppar inom EU, till USA, Storbritannien och Asien. Tulldokument, pallet-märkning och konsolidering ingår i offerten — inga dolda speditörslinjer som tillkommer i efterhand."
+        },
+        "certifications": {
+          "q": "Vilka certifieringar har era material?",
+          "a": "FSC Mix som grundval för allt papper och all kartong. Utvalda linjer finns med FSC Recycled eller 100 % återvunnet. På begäran: ISEGA (livsmedelsgodkänt) och EU REACH-kompatibla tryckfärger. Certifikat levereras per batch."
+        },
+        "prototyping": {
+          "q": "Hur fungerar prototyp-processen?",
+          "a": "En handbyggd prototyp levereras till ert kontor i steg 03. Två revideringsrundor ingår; ytterligare rundor faktureras per timme. Provtryck för färgkritiska specar körs på certifierad proof-press — inte en digital simulering."
+        },
+        "nda": {
+          "q": "Kan ni signa NDA?",
+          "a": "Ja, vi signar ömsesidig NDA innan brief. Vår standardform finns på begäran; kundens egen form granskas inom två arbetsdagar. Projektinformation stannar internt tills kunden explicit godkänner publicering."
+        },
+        "revisions": {
+          "q": "Hur många revideringsrundor ingår?",
+          "a": "Två koncept-revideringar i steg 02 och två prototyp-revideringar i steg 03 ingår i grundoffert. Ytterligare rundor kan läggas till innan kontrakt signeras — vi tydliggör alltid antalet rundor och timpris i offerten, aldrig i efterhand."
+        },
+        "pricing": {
+          "q": "Hur sker prissättningen?",
+          "a": "Fast offert baserad på signerad spec. Ingen timtaxa, inga open-ended tillägg. Volym-break efter 1 500 / 5 000 / 15 000 enheter — offerten visar alla tre prisnivåerna så ni kan ta ett beslut innan produktion startar."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Klar att börja?",
+      "heading": "Redo att starta i steg 01?",
+      "description": "Dela brief och scope så bokar vi in en kick-off-session. Inom 48 timmar återkommer vi med förslag på tidsram och första möte.",
+      "primary": "Begär offert",
+      "secondary": "Kontakta oss"
+    }
+  },
   "footer": {
     "tagline": {
       "eyebrow": "AW AB · Sedan 2019",

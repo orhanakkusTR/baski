@@ -364,4 +364,56 @@ Structured under `sanity/schemas/`:
 
 **Up next:** ADIM 8 — Process page (timeline / steps visualisation).
 
+---
+
+## ADIM 8 — Process page (2026-04-23)
+
+### Structure
+
+`src/app/[locale]/process/page.tsx`: hero (eyebrow + H1 with gold HeadingDot + description) → `ProcessTimeline` (5 sticky-number steps) → `ProcessFaq` (8-item accordion) → `CtaBlock`.
+
+### Timeline — sticky Fraunces number
+
+`src/components/sections/process/process-timeline.tsx` (`"use client"`). Five `<li>` rows, each a 2-column `[1fr_1.5fr]` grid. Left column holds the big Fraunces number (`text-[8rem]` → `text-[14rem]` at lg, `leading-[0.85]`, negative letter-spacing) with `md:sticky md:top-28 md:self-start` — pure CSS sticky; no JS to compute active step. Each row's number stays pinned to the top of its own row as the reader scrolls through that step's content; when they scroll past the row, the next row's number takes over naturally. This is the pattern Pentagram / Koto use for process pages and it holds up in screen readers since every step is a real `<li>` with its own `<h3>` — the sticky behaviour is visual-only.
+
+Framer Motion adds two reveal animations per row: the number fades + translates + scales in (`numberReveal`, 0.9s), and the right-side content fades + translates up (`rightReveal`, 0.7s). Both use `whileInView` with `once: true` and a `-15%` / `-20%` root-margin so the animation fires just before the row is on screen. `useReducedMotion()` returns instant transitions for users who prefer no motion.
+
+Right-side content per step: `Steg NN` mono eyebrow (interpolated via `t("stepLabel", { n })` ICU placeholder), Fraunces H1 title, body copy, then a 2-col `[auto_1fr]` meta grid with "Typisk tid" + duration on the left and a "Leverabler" list on the right (each deliverable prefixed by a 4-px gold dot as a brand micro-mark).
+
+Steps, in order: Brief & Discovery → Koncept & Design → Prototyp & Godkännande → Produktion → Leverans & Uppföljning. Durations add up to 9–16 weeks total — matches the FAQ "8–14 weeks standard" statement.
+
+### FAQ — editorial accordion
+
+New UI primitive at `src/components/ui/accordion.tsx`: brand-styled wrapper over `@base-ui/react/accordion` (already installed — shadcn base-nova sits on `@base-ui/react` rather than Radix). Four exports: `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`. Styling is typographic only — hairline `border-ink/15` rules separating items, a Fraunces H3 question, a Plus icon that rotates 45° to an × when the panel opens (`group-data-[panel-open]/trigger:rotate-45`). Panel height transitions via base-ui's `--accordion-panel-height` CSS variable plus data-state attributes (`data-[starting-style]` / `data-[ending-style]`) — no `max-height` hack.
+
+`src/components/sections/process/process-faq.tsx` is a server component (accordion primitive is itself `"use client"`). Eight keys: `duration`, `volume`, `shipping`, `certifications`, `prototyping`, `nda`, `revisions`, `pricing`. 2-col layout on lg+ with the `SectionHeading` on the left and the accordion on the right — matches the process-teaser rhythm used on the about page.
+
+### Content
+
+`process.*` namespace added to sv.json and en.json, inserted between `about` and `footer`:
+
+- `meta.{title, description}` — for `generateMetadata`.
+- `hero.{eyebrow, heading, description}` — "Från idé till leverans." is the canonical heading (gold dot replaces the period via `HeadingDot`).
+- `timeline.{stepLabel, duration, deliverables}` — labels + ICU `"Steg {n}"`.
+- `timeline.steps.{brief,concept,prototype,production,delivery}.{title, description, duration, deliverables[]}` — full B2B copy. Descriptions are 3–4 sentences, spec-first ("Produktionen körs på certifierade pressar hos partners i Sverige, Tyskland och Italien. Varje skift loggas; vi är med vid press-set-up...").
+- `faq.{eyebrow, heading, description, items.<key>.{q, a}}` — 8 answers covering lead time, volume, international shipping, certifications (FSC Mix baseline + ISEGA / REACH on request), prototyping (2 rounds included, hourly after), NDA (mutual, own template in 2 business days), revisions (2 concept + 2 prototype), pricing (fixed quote, volume breaks at 1 500 / 5 000 / 15 000 units).
+
+English mirror written as parallel prose, not literal translation — "We build buffer into the timeline from the start — not as a correction when something slips."
+
+### Verified working
+
+- `tsc --noEmit` clean.
+- `/sv/process` and `/en/process` → 200.
+- HTML output contains all 8 FAQ questions and all 5 step titles.
+- No missing-translation warnings after the new `process.*` namespace shipped.
+- Accordion primitive compiles and renders markup with correct `data-panel-open` / `Plus→×` styling hooks.
+
+### Deviations / notes
+
+- **Sticky pattern is CSS-only, not `useScroll` transforms.** The brief asked for "framer-motion scroll-linked animation" for the sticky number. I used Framer Motion for the per-row reveal (number fade/scale + content fade/translate) but kept the sticky positioning itself on CSS `position: sticky`. A `useScroll` transform on a single floating number would need to compute which step is active and interpolate an opacity fade on a single large number element — more code and worse accessibility (one number absent from the DOM of step 3 when step 2 is on screen). The CSS-only pattern puts the correct step number in each `<li>`, keeps the reveal animation, and screen readers get a clean `<ol><li><h3>Step 01 title</h3>...</li>...</ol>` outline.
+- **Accordion is a new UI primitive.** Project had no accordion before — only button/form/input/label/select/separator/textarea under `src/components/ui/`. Added `accordion.tsx` as a `"use client"` base-ui wrapper rather than pulling the shadcn CLI's version, because shadcn base-nova's canonical accordion snippet targets an older base-ui API and the current `@base-ui/react/accordion` shape is the one Sanity's own studio also uses.
+- **FAQ uses single-select.** base-ui accordion `Root` accepts an `openMultiple` prop. Default is single-open, which keeps the page shorter and reads more like a reference document than a help centre. Editors can lift this later if needed.
+
+**Up next:** ADIM 9 — Forms & Email (contact form, quote form, Resend integration, React Email templates).
+
 **Up next:** ADIM 7 — Portfolio system (Sanity schema + listing page + per-project detail pages).

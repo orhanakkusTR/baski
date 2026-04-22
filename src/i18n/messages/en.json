@@ -537,6 +537,125 @@
       "secondary": "Contact us"
     }
   },
+  "process": {
+    "meta": {
+      "title": "Process",
+      "description": "How AW AB works — five steps from brief to delivered pallet. Typical lead time 8–14 weeks. FAQ on lead time, volume, certifications, NDAs and pricing."
+    },
+    "hero": {
+      "eyebrow": "Process",
+      "heading": "From idea to delivery.",
+      "description": "We work in five defined steps — each with a clear entry condition and a sign-off before the next begins. No part of the process is ad-hoc. That is how we hold timeline, spec and price."
+    },
+    "timeline": {
+      "stepLabel": "Step {n}",
+      "duration": "Typical duration",
+      "deliverables": "Deliverables",
+      "steps": {
+        "brief": {
+          "title": "Brief & Discovery",
+          "description": "We open with a scoping session — either on-site or over call. We want to see the product, read the brand book, and understand both the in-store moment and the warehouse constraints before we talk construction. We say no early if we don't see a fit.",
+          "duration": "1–2 weeks",
+          "deliverables": [
+            "Kick-off workshop (on-site or digital)",
+            "Brand and material audit",
+            "Technical feasibility study",
+            "Signed scope document"
+          ]
+        },
+        "concept": {
+          "title": "Concept & Design",
+          "description": "We present two or three concept directions. Each includes a mood board, physical material samples, and a technical sketch of the construction. No generic renders — we put real paper on the table so you can feel the decision before taking it.",
+          "duration": "2–3 weeks",
+          "deliverables": [
+            "2–3 concept directions with mood boards",
+            "Physical material samples",
+            "Technical drawings (CAD)",
+            "Indicative production cost per direction"
+          ]
+        },
+        "prototype": {
+          "title": "Prototype & Approval",
+          "description": "One physical prototype is hand-built and shipped to your office. We also run certified press proofs for colour-critical specs. Nothing goes to production before a signed master prototype sits in your building.",
+          "duration": "2–3 weeks",
+          "deliverables": [
+            "One to three hand-built prototypes",
+            "Certified press proofs",
+            "Detailed production spec",
+            "Signed master prototype"
+          ]
+        },
+        "production": {
+          "title": "Production",
+          "description": "Production runs on certified presses at partner facilities in Sweden, Germany and Italy. Every shift is logged; we attend press set-up and the first finished unit of each SKU. Random QC samples pulled through the run are compared against the signed master.",
+          "duration": "3–6 weeks",
+          "deliverables": [
+            "Press set-up supervised on site",
+            "Random QC sampling during run",
+            "Final quality control against signed master",
+            "Production report with batch traceability"
+          ]
+        },
+        "delivery": {
+          "title": "Delivery & Follow-up",
+          "description": "Freight and logistics are part of the deliverable — palletising, customs and warehouse drop-off are planned in step 01, not scrambled at the end. We follow up two weeks after delivery to confirm what ended up in store, in warehouse and in use.",
+          "duration": "1–2 weeks",
+          "deliverables": [
+            "Freight planning and customs handling",
+            "Palletising and batch labelling",
+            "Delivery confirmation to your warehouses",
+            "Follow-up call 14 days after delivery"
+          ]
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "Common questions",
+      "heading": "What procurement usually asks first.",
+      "description": "Eight questions that typically come up during scoping — lead time, volume, certifications, NDA, pricing. If yours isn't here, call direct.",
+      "items": {
+        "duration": {
+          "q": "How long does production take?",
+          "a": "Standard is 8–14 weeks from signed spec to delivered pallet, depending on quantity and materials. Bespoke projects and custom kits take 12–16 weeks. We build buffer into the timeline from the start — not as a correction when something slips."
+        },
+        "volume": {
+          "q": "What quantities do you work with?",
+          "a": "From 100 units for limited editions and custom kits, up to 50,000+ for retail volume. Below 100 we usually say no or refer elsewhere — set-up costs don't amortise at that scale. No upper cap."
+        },
+        "shipping": {
+          "q": "Can you handle international delivery?",
+          "a": "Yes. We ship within the EU, to the US, the UK and Asia. Customs documents, pallet marking and consolidation are part of the quote — no hidden freight-forwarder lines added at the end."
+        },
+        "certifications": {
+          "q": "What certifications do your materials carry?",
+          "a": "FSC Mix as the baseline for all paper and board. Selected lines available as FSC Recycled or 100% recycled. On request: ISEGA (food contact), EU REACH-compliant inks. Certificates are delivered per batch."
+        },
+        "prototyping": {
+          "q": "How does the prototype process work?",
+          "a": "One hand-built prototype is delivered to your office in step 03. Two revision rounds are included; additional rounds are billed hourly. Press proofs for colour-critical specs run on a certified proof press — never a digital simulation."
+        },
+        "nda": {
+          "q": "Can you sign an NDA?",
+          "a": "Yes, we sign a mutual NDA before the brief. Our standard template is available on request; your own template is reviewed within two business days. Project information stays internal until you explicitly approve publication."
+        },
+        "revisions": {
+          "q": "How many revision rounds are included?",
+          "a": "Two concept revisions in step 02 and two prototype revisions in step 03 are included in the base quote. Additional rounds can be added before the contract is signed — we always state round count and hourly rate in the quote, never after the fact."
+        },
+        "pricing": {
+          "q": "How does pricing work?",
+          "a": "Fixed quote based on signed spec. No hourly billing, no open-ended add-ons. Volume breaks at 1,500 / 5,000 / 15,000 units — the quote shows all three tiers so you can decide before production starts."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Ready to start?",
+      "heading": "Ready to start in step 01?",
+      "description": "Send us brief and scope and we'll book a kick-off session. Within 48 hours we'll return with a timeline proposal and a first meeting.",
+      "primary": "Request quote",
+      "secondary": "Contact us"
+    }
+  },
   "footer": {
     "tagline": {
       "eyebrow": "AW AB · Since 2019",
