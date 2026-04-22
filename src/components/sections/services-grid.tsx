@@ -27,7 +27,7 @@ export async function ServicesGrid() {
   const items = NAVIGATION.footer.services;
 
   return (
-    <Container as="section" className="py-24 md:py-32 lg:py-40">
+    <Container as="section" className="py-20 md:py-24 lg:py-28">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <SectionHeading
           eyebrow={t("home.services.eyebrow")}
