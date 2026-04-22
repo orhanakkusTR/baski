@@ -9,6 +9,7 @@
 *.swp
 *.swo
 .cursor/
+.claude/
 
 # Logs
 *.log
