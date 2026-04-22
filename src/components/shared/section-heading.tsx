@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { HeadingDot } from "./heading-dot";
 
 interface SectionHeadingProps {
   eyebrow?: string;
@@ -44,7 +45,7 @@ export function SectionHeading({
           sizeMap[size],
         )}
       >
-        {heading}
+        {typeof heading === "string" ? <HeadingDot>{heading}</HeadingDot> : heading}
       </Tag>
       {description ? (
         <p className="text-body-lg text-pretty text-stone">{description}</p>

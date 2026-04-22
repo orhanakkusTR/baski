@@ -27,6 +27,15 @@ export function HeroHome() {
 
   const headline = t("home.hero.headline");
   const words = headline.split(/(\s+)/);
+  // The trailing period on the headline is swapped for a gold dot that
+  // matches the logo mark. Find the last non-whitespace segment so we can
+  // strip its "." and render the dot inside its motion wrapper, keeping
+  // the dot aligned with that word's stagger reveal.
+  const lastWordIndex = words.reduce(
+    (acc, seg, i) => (/^\s+$/.test(seg) ? acc : i),
+    -1,
+  );
+  const lastWordEndsWithPeriod = words[lastWordIndex]?.endsWith(".") ?? false;
 
   const listVariants: Variants = {
     hidden: {},
@@ -95,6 +104,11 @@ export function HeroHome() {
           >
             {words.map((segment, i) => {
               if (/^\s+$/.test(segment)) return segment;
+              const isLastWithPeriod =
+                i === lastWordIndex && lastWordEndsWithPeriod;
+              const visible = isLastWithPeriod
+                ? segment.slice(0, -1)
+                : segment;
               return (
                 <span
                   key={i}
@@ -105,7 +119,13 @@ export function HeroHome() {
                     variants={wordVariants}
                     className="inline-block max-w-full break-words"
                   >
-                    {segment}
+                    {visible}
+                    {isLastWithPeriod ? (
+                      <span
+                        aria-hidden
+                        className="ml-[0.06em] inline-block size-[0.22em] rounded-full bg-gold align-baseline"
+                      />
+                    ) : null}
                   </motion.span>
                 </span>
               );

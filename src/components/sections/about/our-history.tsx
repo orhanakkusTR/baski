@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
 import { Container } from "@/components/shared/container";
+import { HeadingDot } from "@/components/shared/heading-dot";
 
 /**
  * 01 — Our history.
@@ -30,7 +31,7 @@ export async function OurHistory() {
             lang="sv"
             className="mt-5 text-balance font-display text-ink text-h1 hyphens-auto break-words"
           >
-            {t("heading")}
+            <HeadingDot>{t("heading")}</HeadingDot>
           </h2>
         </div>
         <div className="flex flex-col gap-6 text-body-lg text-stone">

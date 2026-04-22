@@ -47,12 +47,12 @@ export async function OurValues() {
           {values.map(({ key, Icon }, i) => (
             <li
               key={key}
-              className="flex flex-col gap-5 border-t border-ink/15 pt-6"
+              className="group relative flex flex-col gap-5 border-t border-ink/15 pt-6 transition-colors duration-300 ease-out hover:border-gold"
             >
               <div className="flex items-center justify-between">
                 <Icon
                   aria-hidden
-                  className="size-6 text-ink"
+                  className="size-6 text-ink transition-colors duration-300 ease-out group-hover:text-gold"
                   strokeWidth={1.5}
                 />
                 <span className="font-mono text-caption uppercase text-stone">
