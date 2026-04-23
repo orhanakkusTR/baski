@@ -416,4 +416,59 @@ English mirror written as parallel prose, not literal translation — "We build 
 
 **Up next:** ADIM 9 — Forms & Email (contact form, quote form, Resend integration, React Email templates).
 
+---
+
+## ADIM 9 — Forms & Email (2026-04-23)
+
+Full content in `docs/06-forms-and-email.md`. Summary of what shipped:
+
+### Validation
+- `src/lib/validations/contact-schema.ts` — `makeContactSchema(t)` (localized messages, for the client form) + `contactSchemaServer` (generic, for the API route).
+- `src/lib/validations/quote-schema.ts` — same dual-schema pattern plus file validation constants (`FILE_MAX_BYTES`, `FILE_MAX_COUNT`, `FILE_ACCEPTED_MIME`, `FILE_ACCEPTED_EXT`) and a `validateUploadedFiles(files)` helper the API route calls independently of the client gate.
+- `quantity` stays a string on the client (HTML `<input type="number">` delivers a string and transforming to `number` would force RHF's input/output types to diverge); the server coerces with `z.coerce.number()`.
+
+### Email
+- `src/lib/email/resend.ts` — shared `Resend` client + `resendConfig`. Returns `null` when `RESEND_API_KEY` is missing; API routes check `resendEnabled` and log+return `{ ok: true, mock: true }` so the UI flow still resolves in dev.
+- `src/lib/email/templates/_layout.tsx` — shared email wrapper (Tailwind block + brand palette as inline styles, wordmark + gold dot header, footer with address / org number / reply note). `BRAND_COLORS`, `EmailHeading`, `FieldRow` helpers.
+- Four templates: `ContactInquiryEmail`, `ContactConfirmationEmail`, `QuoteInquiryEmail`, `QuoteConfirmationEmail`. Each takes `locale: "sv" | "en"` and embeds its own copy dict (avoids coupling to next-intl request context during `render`). Fraunces fallback: `Georgia, "Times New Roman", serif`. Body fallback: system UI stack.
+
+### File uploader
+- `src/components/forms/file-uploader.tsx` — drag-and-drop + click, sr-only `<input type="file" multiple>` for keyboard / click fallback. Controlled: parent holds `File[]`. Rejections surface inline as structured `<li>` entries (filename + reason keys: `type` / `size` / `count`). Removed files can be re-added (input value cleared after each selection). Duplicate detection by `${name}__${size}__${lastModified}`.
+
+### Forms
+- `src/components/forms/form-primitives.tsx` — editorial class constants (`fieldClass`, `textareaClass`, `selectClass`, `formLabelClass`). Hairline underline inputs (`border-0 border-b border-ink/20`), rounded-none, single-border on focus, `aria-[invalid=true]:border-destructive`.
+- `src/components/forms/form-success.tsx` — shared success block that replaces the form frame on submit (gold left rule, eyebrow + H1 heading + body).
+- `src/components/forms/contact-form.tsx` — single-column RHF form, 5 fields, POSTs JSON to `/api/contact`. Loading spinner on submit, error line under the submit button, success block on resolution.
+- `src/components/forms/quote-form.tsx` — 3-step form. Single RHF instance, per-step field array (`STEP_FIELDS: Record<1|2|3, Path[]>`) drives `form.trigger()` on Next. Files live in sibling `useState<File[]>`. Progress indicator is typographic: `Steg 01 av 03 · Kontakt` + 1-px ink rule with gold fill animating `(step / 3) * 100%` width. Steps hidden via `display: none` (not unmounted) so RHF state persists. Submit builds FormData from scalar values + locale + repeated `file` entries.
+
+### API routes
+- `src/app/api/contact/route.ts` — Node runtime. JSON body → server Zod → Resend fan-out (admin + user) with `replyTo` on the admin inquiry. Mock-mode short-circuit.
+- `src/app/api/quote/route.ts` — Node runtime. `content-length` pre-check against `(FILE_MAX_BYTES + 1024) * FILE_MAX_COUNT + 16 KB`. `request.formData()` → split scalar + file entries → server Zod + `validateUploadedFiles` → attachments built from `await file.arrayBuffer()` Buffers → Resend (admin with attachments + `replyTo`, user confirmation without). Mock-mode short-circuit.
+
+### Pages
+- `/quote` (`src/app/[locale]/quote/page.tsx`) — hero + two-column grid (`[1.6fr_1fr]`) with the form on the left and a sticky "Vad händer efter?" sidebar on the right. Sidebar: gold-rule intro + four info rows (response time, proposal, scoping, NDA) with Lucide icons + the direct phone/email block beneath.
+- `/contact` (`src/app/[locale]/contact/page.tsx`) — hero + two-column grid with the form on the left and a sticky info sidebar on the right (address / email / phone / office hours, each an `InfoRow`). Full-width office placeholder (`aspect-[21/9]`) below.
+
+### Translations
+Inserted `quote.*` and `contact.*` namespaces in sv.json + en.json, between `process` and `footer`. Full field labels, placeholders, validation messages, step headings, file-uploader copy, success blocks, sidebar copy, validation + network error messages. Swedish is canonical; English is an edited parallel. B2B voice: "Offertförfrågningar hanteras personligen — ingen automatiserad återkoppling."
+
+### Verified working
+- `tsc --noEmit` clean after resolving Zod 4 input/output divergence by keeping `quantity` as a client-side string.
+- Routes: `/sv/offert`, `/en/quote`, `/sv/kontakt`, `/en/contact` → 200.
+- `POST /api/contact` with a valid JSON body → `{ ok: true, mock: true }` (no Resend key in dev).
+- `POST /api/contact` with too-short name + bad email + short message → `400` with field-level Zod issues.
+- `POST /api/quote` with a valid multipart body → `{ ok: true, mock: true }`.
+- `POST /api/quote` with a `.exe` attached → `400 { error: "File validation failed.", files: [{ name, reason: "type" }] }`.
+- `POST /api/quote` without `productType` → `400` with the invalid-option issue.
+
+### Deviations / notes
+
+- **`_type` removed in Zod 4.** The initial draft used `ReturnType<typeof makeFooSchema>["_type"]` to extract the inferred shape; Zod 4 only exports types via `z.infer<T>` and `z.input<T>`. Switched to `z.infer<ReturnType<typeof makeFooSchema>>`.
+- **Mock mode is deliberate.** The routes respond `{ ok: true, mock: true }` when Resend is unconfigured. An alternative was to return `503 Email service unavailable` — but then the form's success UI couldn't be QA'd without creds, and dev gets slower. The `mock: true` flag is in the response so a smoke test can assert "real send" vs "stubbed".
+- **Email templates embed their own copy.** React Email's `render()` runs inside the API route handler where next-intl's request context is live, so I could have called `getTranslations()`. I didn't — keeping the copy inside each template file makes previewing with `npx react-email dev` work without running the rest of the Next app, which is how designers iterate on email layout.
+- **No honeypot / captcha.** B2B inbound is low-volume and Resend enforces domain-level rate limits. If abuse appears, the quickest remediation is a rate-limited middleware on `/api/*` + a hidden honeypot field that short-circuits spam; neither is worth adding now.
+- **Files never persist.** Accepted files are streamed into Buffer, attached to Resend, then go out of scope. No disk, no S3, no DB. Phase 2 changes this when the admin dashboard lands.
+
+**Up next:** ADIM 10 — i18n content pass (Swedish + English polish across the site + any remaining untranslated strings).
+
 **Up next:** ADIM 7 — Portfolio system (Sanity schema + listing page + per-project detail pages).

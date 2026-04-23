@@ -656,6 +656,198 @@
       "secondary": "Kontakta oss"
     }
   },
+  "quote": {
+    "meta": {
+      "title": "Begär offert",
+      "description": "Beskriv projektet — vi återkommer med ett konkret förslag inom 48 timmar. Ingen standardoffert, ingen automatisk återkoppling."
+    },
+    "hero": {
+      "eyebrow": "Offert",
+      "heading": "Beskriv projektet.",
+      "description": "Gå igenom formuläret i tre steg — kontakt, projektdetaljer och filer. Vi behöver inte perfekt spec från start; kompletterande frågor tar vi i scoping."
+    },
+    "fields": {
+      "name": "Namn",
+      "company": "Företag",
+      "email": "E-post",
+      "phone": "Telefon",
+      "website": "Webbplats",
+      "productType": "Produkttyp",
+      "quantity": "Antal",
+      "dimensions": "Ungefärliga mått",
+      "materials": "Material",
+      "deadline": "Deadline",
+      "budget": "Budget",
+      "files": "Brief & dokument",
+      "notes": "Ytterligare noteringar"
+    },
+    "placeholders": {
+      "name": "Förnamn Efternamn",
+      "company": "Företagsnamn",
+      "email": "du@exempel.se",
+      "phone": "+46 ...",
+      "quantity": "500",
+      "productType": "Välj produkttyp...",
+      "dimensions": "t.ex. 200×150×80 mm",
+      "materials": "t.ex. FSC kraft 180 gsm, matt lamination",
+      "budget": "Välj budget...",
+      "notes": "Brand-referenser, tidigare arbete, leveransplats — allt som hjälper oss förstå briefen."
+    },
+    "validation": {
+      "nameMin": "Ange ditt namn.",
+      "companyMin": "Ange företagsnamn.",
+      "emailInvalid": "Ange en giltig e-postadress.",
+      "phoneInvalid": "Telefonnummer ser inte korrekt ut.",
+      "websiteInvalid": "URL måste börja med http:// eller https://.",
+      "productTypeRequired": "Välj produkttyp.",
+      "quantityInteger": "Antal måste vara ett heltal.",
+      "quantityPositive": "Antal måste vara minst 1.",
+      "dimensionsMax": "Håll fältet under 500 tecken.",
+      "materialsMax": "Håll fältet under 500 tecken.",
+      "deadlineInvalid": "Ange ett giltigt datum.",
+      "notesMax": "Håll noteringen under 2000 tecken."
+    },
+    "optional": "valfritt",
+    "submit": "Skicka förfrågan",
+    "submitting": "Skickar...",
+    "back": "Tillbaka",
+    "next": "Nästa",
+    "progress": { "prefix": "Steg", "of": "av" },
+    "steps": {
+      "contact": {
+        "label": "Kontakt",
+        "heading": "Vem är du?",
+        "description": "Dina kontaktuppgifter och företagsinformation — så vi vet vem vi återkommer till."
+      },
+      "project": {
+        "label": "Projekt",
+        "heading": "Vad ska vi bygga?",
+        "description": "Så mycket detalj som du har om produkten, volymen och tidsramen. Det är OK om vissa fält är tomma — vi kompletterar i scoping."
+      },
+      "files": {
+        "label": "Filer & noter",
+        "heading": "Dela brief & detaljer.",
+        "description": "Bifoga brief, moodboard eller tidigare arbete. Max 5 filer, 10 MB styck. Allt är strikt konfidentiellt — NDA på begäran."
+      }
+    },
+    "productTypes": {
+      "boxes": "Presentkartonger",
+      "bags": "Papperskassar",
+      "corporate": "Företagstryck",
+      "custom": "A++ Specialproduktion"
+    },
+    "budgetRanges": {
+      "under50k": "Under 50 000 kr",
+      "range50to150k": "50 000 – 150 000 kr",
+      "range150to500k": "150 000 – 500 000 kr",
+      "over500k": "Över 500 000 kr",
+      "flexible": "Flexibel"
+    },
+    "fileUploader": {
+      "dropzoneHeading": "Dra filer hit eller klicka för att välja.",
+      "dropzoneHint": "PDF, PNG, JPG, AI, EPS — max 10 MB per fil. Briefer, moodboards, logotyper, tidigare arbete.",
+      "maxReached": "Max antal filer uppnått.",
+      "counter": "{current} av {max} filer",
+      "remove": "Ta bort",
+      "rejection": {
+        "type": "Filtyp stöds inte. Tillåt: PDF, PNG, JPG, WEBP, AI, EPS.",
+        "size": "Filen är större än 10 MB.",
+        "count": "Max 5 filer åt gången."
+      }
+    },
+    "errors": {
+      "generic": "Något gick fel. Försök igen eller ring oss direkt.",
+      "network": "Kunde inte ansluta. Kolla din anslutning och försök igen."
+    },
+    "success": {
+      "eyebrow": "Förfrågan skickad",
+      "heading": "Tack — vi återkommer inom 48 timmar.",
+      "body": "Vi har mottagit din offertförfrågan. En bekräftelse med sammanfattning finns i din inbox om några minuter. Om något behöver kompletteras hör vi av oss direkt."
+    },
+    "sidebar": {
+      "eyebrow": "Vad händer efter?",
+      "heading": "Fyra steg till offert.",
+      "description": "Offertförfrågningar hanteras personligen — ingen automatiserad återkoppling.",
+      "items": {
+        "response": {
+          "title": "Svar inom 48 timmar",
+          "description": "Vi går igenom brief och scope personligen, oftast samma dag under kontorstid."
+        },
+        "proposal": {
+          "title": "Konkret förslag",
+          "description": "Fast offert med alla volym-break, leadtime och leveransdetaljer — ingen standardmall."
+        },
+        "scoping": {
+          "title": "Scoping-möte vid behov",
+          "description": "30 minuter för att gå igenom briefen om något behöver kompletteras."
+        },
+        "nda": {
+          "title": "NDA tillgänglig",
+          "description": "Vi signar ömsesidig NDA innan brief — er form eller vår."
+        }
+      },
+      "directContact": "Eller ring direkt"
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Kontakt",
+      "description": "Kontakta AW AB i Stockholm — diskret dialog inom 48 timmar, inga standardpitcher."
+    },
+    "hero": {
+      "eyebrow": "Kontakt",
+      "heading": "Låt oss prata.",
+      "description": "Skriv några rader om vad du behöver, så återkommer vi inom 48 timmar. För brådskande projekt — ring direkt, det är snabbare än mail."
+    },
+    "fields": {
+      "name": "Namn",
+      "company": "Företag",
+      "email": "E-post",
+      "phone": "Telefon",
+      "message": "Meddelande"
+    },
+    "placeholders": {
+      "name": "Förnamn Efternamn",
+      "company": "Företagsnamn",
+      "email": "du@exempel.se",
+      "phone": "+46 ...",
+      "message": "Kort om bakgrund och vad du behöver hjälp med."
+    },
+    "validation": {
+      "nameMin": "Ange ditt namn (minst 2 tecken).",
+      "companyMin": "Ange företagsnamn (minst 2 tecken).",
+      "emailInvalid": "Ange en giltig e-postadress.",
+      "phoneInvalid": "Telefonnummer ser inte korrekt ut.",
+      "messageMin": "Skriv minst 10 tecken så vi förstår vad du behöver.",
+      "messageMax": "Håll meddelandet under 2000 tecken."
+    },
+    "optional": "valfritt",
+    "submit": "Skicka meddelande",
+    "submitting": "Skickar...",
+    "responseTime": "Vi återkommer inom 48 timmar, vanligtvis samma dag under kontorstid.",
+    "errors": {
+      "generic": "Något gick fel. Försök igen eller ring oss direkt.",
+      "network": "Kunde inte ansluta. Kolla din anslutning och försök igen."
+    },
+    "success": {
+      "eyebrow": "Meddelande skickat",
+      "heading": "Tack — vi hör av oss.",
+      "body": "Vi har tagit emot ditt meddelande och återkommer inom 48 timmar. En bekräftelse finns i din inbox om några minuter."
+    },
+    "info": {
+      "eyebrow": "Kontorsuppgifter",
+      "heading": "Hitta oss i Gamla stan.",
+      "address": "Kontor",
+      "email": "E-post",
+      "phone": "Telefon",
+      "hours": "Öppettider",
+      "hoursValue": "Måndag–fredag · 09:00–17:00 CET"
+    },
+    "office": {
+      "imageLabel": "Studio · Gamla stan",
+      "caption": "Vår studio ligger i Gamla stan, Stockholm. Besök är på bokning — skicka ett mail så planerar vi in en tid."
+    }
+  },
   "footer": {
     "tagline": {
       "eyebrow": "AW AB · Sedan 2019",

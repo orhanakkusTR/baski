@@ -656,6 +656,198 @@
       "secondary": "Contact us"
     }
   },
+  "quote": {
+    "meta": {
+      "title": "Request a quote",
+      "description": "Describe the project — we'll come back with a concrete proposal within 48 hours. No generic quote, no automated reply."
+    },
+    "hero": {
+      "eyebrow": "Quote",
+      "heading": "Describe the project.",
+      "description": "Walk through the form in three steps — contact, project, files. No need for a perfect spec up front; we'll follow up in scoping if anything is missing."
+    },
+    "fields": {
+      "name": "Name",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone",
+      "website": "Website",
+      "productType": "Product type",
+      "quantity": "Quantity",
+      "dimensions": "Approx. dimensions",
+      "materials": "Material preference",
+      "deadline": "Deadline",
+      "budget": "Budget",
+      "files": "Brief & documents",
+      "notes": "Additional notes"
+    },
+    "placeholders": {
+      "name": "First Last",
+      "company": "Company name",
+      "email": "you@example.com",
+      "phone": "+46 ...",
+      "quantity": "500",
+      "productType": "Select product type...",
+      "dimensions": "e.g. 200×150×80 mm",
+      "materials": "e.g. FSC kraft 180 gsm, matte lamination",
+      "budget": "Select budget...",
+      "notes": "Brand references, prior work, delivery location — anything that helps us understand the brief."
+    },
+    "validation": {
+      "nameMin": "Please enter your name.",
+      "companyMin": "Please enter a company name.",
+      "emailInvalid": "Please enter a valid email address.",
+      "phoneInvalid": "That phone number doesn't look right.",
+      "websiteInvalid": "URL must start with http:// or https://.",
+      "productTypeRequired": "Please pick a product type.",
+      "quantityInteger": "Quantity must be a whole number.",
+      "quantityPositive": "Quantity must be at least 1.",
+      "dimensionsMax": "Keep this under 500 characters.",
+      "materialsMax": "Keep this under 500 characters.",
+      "deadlineInvalid": "Please enter a valid date.",
+      "notesMax": "Keep notes under 2000 characters."
+    },
+    "optional": "optional",
+    "submit": "Send request",
+    "submitting": "Sending...",
+    "back": "Back",
+    "next": "Next",
+    "progress": { "prefix": "Step", "of": "of" },
+    "steps": {
+      "contact": {
+        "label": "Contact",
+        "heading": "Who are you?",
+        "description": "Your contact and company details — so we know who to come back to."
+      },
+      "project": {
+        "label": "Project",
+        "heading": "What are we building?",
+        "description": "As much detail as you have on product, volume and timing. Blank fields are fine — we'll follow up in scoping."
+      },
+      "files": {
+        "label": "Files & notes",
+        "heading": "Share brief & details.",
+        "description": "Attach brief, mood board or prior work. Max 5 files, 10 MB each. Strictly confidential — NDA available on request."
+      }
+    },
+    "productTypes": {
+      "boxes": "Gift boxes",
+      "bags": "Paper bags",
+      "corporate": "Corporate print",
+      "custom": "A++ Custom production"
+    },
+    "budgetRanges": {
+      "under50k": "Under 50,000 SEK",
+      "range50to150k": "50,000 – 150,000 SEK",
+      "range150to500k": "150,000 – 500,000 SEK",
+      "over500k": "Over 500,000 SEK",
+      "flexible": "Flexible"
+    },
+    "fileUploader": {
+      "dropzoneHeading": "Drop files here, or click to choose.",
+      "dropzoneHint": "PDF, PNG, JPG, AI, EPS — max 10 MB per file. Briefs, mood boards, logotypes, prior work.",
+      "maxReached": "Maximum number of files reached.",
+      "counter": "{current} of {max} files",
+      "remove": "Remove",
+      "rejection": {
+        "type": "File type not supported. Allowed: PDF, PNG, JPG, WEBP, AI, EPS.",
+        "size": "File is larger than 10 MB.",
+        "count": "Maximum of 5 files at a time."
+      }
+    },
+    "errors": {
+      "generic": "Something went wrong. Try again or call us direct.",
+      "network": "Couldn't reach the server. Check your connection and try again."
+    },
+    "success": {
+      "eyebrow": "Request sent",
+      "heading": "Thanks — we'll be back within 48 hours.",
+      "body": "We've received your quote request. A confirmation with the summary is on its way to your inbox. If anything needs clarification we'll reach out directly."
+    },
+    "sidebar": {
+      "eyebrow": "What happens next?",
+      "heading": "Four steps to a quote.",
+      "description": "Quote requests are handled personally — no automated reply.",
+      "items": {
+        "response": {
+          "title": "Response within 48 hours",
+          "description": "We review brief and scope personally, usually the same day during office hours."
+        },
+        "proposal": {
+          "title": "Concrete proposal",
+          "description": "Fixed quote with all volume breaks, lead time and delivery details — no template."
+        },
+        "scoping": {
+          "title": "Scoping call when needed",
+          "description": "30 minutes to walk through the brief if anything needs filling in."
+        },
+        "nda": {
+          "title": "NDA available",
+          "description": "We sign a mutual NDA before the brief — your template or ours."
+        }
+      },
+      "directContact": "Or call direct"
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact",
+      "description": "Contact AW AB in Stockholm — a discreet conversation within 48 hours, no boilerplate pitch."
+    },
+    "hero": {
+      "eyebrow": "Contact",
+      "heading": "Let's talk.",
+      "description": "Write a few lines about what you need, and we'll come back within 48 hours. For urgent projects — call direct, it's faster than email."
+    },
+    "fields": {
+      "name": "Name",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message"
+    },
+    "placeholders": {
+      "name": "First Last",
+      "company": "Company name",
+      "email": "you@example.com",
+      "phone": "+46 ...",
+      "message": "Brief context and what you'd like help with."
+    },
+    "validation": {
+      "nameMin": "Please enter your name (at least 2 characters).",
+      "companyMin": "Please enter a company name (at least 2 characters).",
+      "emailInvalid": "Please enter a valid email address.",
+      "phoneInvalid": "That phone number doesn't look right.",
+      "messageMin": "Write at least 10 characters so we understand what you need.",
+      "messageMax": "Keep the message under 2000 characters."
+    },
+    "optional": "optional",
+    "submit": "Send message",
+    "submitting": "Sending...",
+    "responseTime": "We reply within 48 hours, usually the same day during office hours.",
+    "errors": {
+      "generic": "Something went wrong. Try again or call us direct.",
+      "network": "Couldn't reach the server. Check your connection and try again."
+    },
+    "success": {
+      "eyebrow": "Message sent",
+      "heading": "Thanks — we'll be in touch.",
+      "body": "We've received your message and will respond within 48 hours. A confirmation will reach your inbox in a few minutes."
+    },
+    "info": {
+      "eyebrow": "Office details",
+      "heading": "Find us in Gamla stan.",
+      "address": "Office",
+      "email": "Email",
+      "phone": "Phone",
+      "hours": "Office hours",
+      "hoursValue": "Monday–Friday · 09:00–17:00 CET"
+    },
+    "office": {
+      "imageLabel": "Studio · Gamla stan",
+      "caption": "Our studio is in Gamla stan, Stockholm. Visits by appointment — send a mail and we'll schedule a time."
+    }
+  },
   "footer": {
     "tagline": {
       "eyebrow": "AW AB · Since 2019",
