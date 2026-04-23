@@ -35,6 +35,7 @@ interface PortfolioListingProps {
   /** Localized category labels, keyed by ServiceKey. */
   categoryLabels: Record<ServiceKey, string>;
   emptyLabel: string;
+  filterAriaLabel: string;
 }
 
 const CATEGORY_ORDER: ServiceKey[] = ["boxes", "bags", "corporate", "custom"];
@@ -45,6 +46,7 @@ export function PortfolioListing({
   allLabel,
   categoryLabels,
   emptyLabel,
+  filterAriaLabel,
 }: PortfolioListingProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -75,7 +77,7 @@ export function PortfolioListing({
     <div className="flex flex-col gap-10 md:gap-12">
       <div
         role="tablist"
-        aria-label="Portfolio categories"
+        aria-label={filterAriaLabel}
         className="flex flex-wrap gap-2 border-b border-ink/10 pb-6"
       >
         <FilterChip

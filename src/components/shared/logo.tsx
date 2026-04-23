@@ -8,6 +8,9 @@ interface LogoProps {
   size?: "sm" | "md" | "lg";
   className?: string;
   withMark?: boolean;
+  /** Overrides the default `AW AB — Home` aria-label. Callers pass a
+   *  translated string (e.g. `t("header.homeLink")`). */
+  ariaLabel?: string;
 }
 
 const sizeMap = {
@@ -22,6 +25,7 @@ export function Logo({
   size = "md",
   className,
   withMark = true,
+  ariaLabel = "AW AB — Home",
 }: LogoProps) {
   const content = (
     <span
@@ -58,7 +62,7 @@ export function Logo({
   return (
     <Link
       href={href}
-      aria-label="AW AB — Home"
+      aria-label={ariaLabel}
       className={cn(
         "inline-flex items-center transition-opacity duration-150 ease-out hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold",
         className,

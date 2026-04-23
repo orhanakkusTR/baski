@@ -471,4 +471,68 @@ Inserted `quote.*` and `contact.*` namespaces in sv.json + en.json, between `pro
 
 **Up next:** ADIM 10 — i18n content pass (Swedish + English polish across the site + any remaining untranslated strings).
 
+---
+
+## ADIM 10 — i18n polish pass (2026-04-23)
+
+This was an audit + surgical fix pass, not a rewrite. Goals:
+
+1. No hardcoded user-visible strings in components.
+2. Swedish copy reads as B2B Swedish (not literal-from-English).
+3. English copy reads as international corporate (British-neutral).
+
+### Hardcoded string audit
+
+Grepped for JSX text nodes, `placeholder` / `aria-label` / `alt` attributes with prose content. Three offenders found, all now routed through `t()`:
+
+1. `src/components/sections/portfolio/portfolio-listing.tsx` — `aria-label="Portfolio categories"` → prop `filterAriaLabel` passed from the server page, sourced from `portfolio.filter.ariaLabel`.
+2. `src/components/layout/language-switcher.tsx` — `aria-label="Language"` → `useTranslations("header")` + `t("languageSwitcher")`.
+3. `src/components/shared/logo.tsx` — `aria-label="AW AB — Home"` → new optional `ariaLabel` prop. `Header` and `MobileMenu` pass `t("header.homeLink")`; default preserves the original for the internal styleguide page.
+
+Added two keys to both locales:
+- `header.languageSwitcher` — "Språk" / "Language"
+- `header.homeLink` — "AW AB — Startsida" / "AW AB — Home"
+- `portfolio.filter.ariaLabel` — "Filtrera projekt efter disciplin" / "Filter projects by discipline"
+
+Styleguide page left with Swedish-only hardcoded strings on purpose — it is an internal dev surface, not customer-facing.
+
+### Swedish tone polish
+
+Small, targeted edits. The bulk of sv.json was already B2B-voiced from the start; these are the handful of spots where the tone leaked.
+
+- `home.hero.eyebrow`: "Tryckeri & Förpackning" → "Tryck & Förpackning". "Tryckeri" reads like a small-shop signboard; "Tryck" is the modern B2B industry register.
+- **`leadtime` → `ledtid`**, all five occurrences in sv.json. Included one stray "lead time" in `process.meta.description`. English loan is accepted in the industry but native Swedish reads cleaner for the primary locale.
+- `services.bags.page.types.items.luxuryShopping.description`: "byggd för upprepad användning och hängning i vardagsrummet" → "byggd för upprepad användning, inte engångsbärighet". Original was trying to evoke "customer keeps the bag at home"; the revised version states the spec directly — more Pentagram-style, less consumer-marketing.
+- `services.corporate.page.products.items.stationery.description`: "Letterheads, visitkort och kuvert" → "Brevpapper, visitkort och kuvert". Matched the Swedish title that was already using "Brevpapper & kuvert".
+- `services.custom.page.examples.items.seeding.description`: "högre visual-per-enhet" → "högre visuell detaljnivå per enhet". The bare English loan "visual" without an article was ambiguous Swedish.
+
+### English tone audit
+
+Grep pass for Americanisms on en.json:
+
+- `colour` × 5, `color` × 0.
+- `-ise/-ised/-ising` × 8, `-ize/-ized/-izing` × 0.
+- No `palletiz`, `organiz`, `customiz`, `amortiz`, `optimiz`, `realiz`, `utiliz`.
+
+en.json was already British-neutral from the start. No fixes required.
+
+### Docs
+
+- **`docs/07-i18n-strategy.md`** filled out. Sections: locale map, tone guidelines (Swedish `vi/ni/du` register rules + English British-neutral guidance), stack (`next-intl` + middleware + request loader + navigation wrapper), file layout, full localised-pathname table, namespace conventions (eyebrow numbering preserved for editors, trailing `.` required for `HeadingDot` to swap in the gold dot, ICU placeholders documented), dual-schema validation pattern (client factory takes `t`, server schema stays generic), email template locale handling (embedded copy dict rationale), what lives outside JSON (`SITE_CONFIG` / Sanity localizedString / service enum keys), a "how to add a new locale" walkthrough with the seven places to touch, and known tradeoffs (no automated translation QA, loan-word policy).
+
+### Verified working
+
+- JSON validity on both locale files.
+- `tsc --noEmit` clean.
+- 14 routes smoke-tested across sv + en (home, about, services overview + 4 detail pages, portfolio listing, portfolio filter query param, process, quote, contact) → all 200.
+- Spot-checks in rendered HTML for the edited strings: `"Tryck & Förpackning · Sedan 2019"`, `"spec och ledtid"`, `"inte engångsbärighet"` all appear on the correct pages.
+
+### Deviations / notes
+
+- **Did not rewrite en.json.** The brief asked for a British-neutral tone. It was already there; no edits made for the sake of edits.
+- **Logo uses `ariaLabel` prop, not internal `useTranslations()`.** Keeping Logo a server component means no unnecessary client boundary around the wordmark. Callers (Header, MobileMenu — both client) pass `t("header.homeLink")`; the `Footer` doesn't render the Logo so it wasn't affected. Styleguide page keeps the default aria text.
+- **Missing from this pass on purpose:** no machine-translated tooling for translation parity (MISSING_MESSAGE runtime warning is the existing safety net, and CI parity checking is Phase 2 scope). No content-review for the internal styleguide page (not customer-facing). No changes to email template copy — already locale-aware with embedded dicts, not pulled from next-intl by design (see `docs/06-forms-and-email.md`).
+
+**Up next:** ADIM 11 — SEO + polish (metadata per page, sitemap, robots.txt, OG image defaults, schema.org structured data).
+
 **Up next:** ADIM 7 — Portfolio system (Sanity schema + listing page + per-project detail pages).

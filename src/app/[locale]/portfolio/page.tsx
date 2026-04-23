@@ -66,6 +66,7 @@ export default async function PortfolioPage() {
           allLabel={t("portfolio.filter.all")}
           categoryLabels={categoryLabels}
           emptyLabel={t("portfolio.empty")}
+          filterAriaLabel={t("portfolio.filter.ariaLabel")}
         />
       </Container>
 

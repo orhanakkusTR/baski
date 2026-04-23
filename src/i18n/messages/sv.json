@@ -15,7 +15,9 @@
     "openMenu": "Öppna menyn",
     "closeMenu": "Stäng menyn",
     "close": "Stäng",
-    "menuLabel": "Meny"
+    "menuLabel": "Meny",
+    "languageSwitcher": "Språk",
+    "homeLink": "AW AB — Startsida"
   },
   "services": {
     "overview": {
@@ -26,7 +28,7 @@
       "hero": {
         "eyebrow": "Tjänster",
         "heading": "Fyra discipliner, ett språk.",
-        "description": "Vi arbetar inom fyra sammanhängande områden — kartong, papperskassar, företagstryck och specialprojekt. Varje uppdrag hanteras med samma krav på material, konstruktion och leverans. Välj disciplin för fullt scope, spec och leadtime."
+        "description": "Vi arbetar inom fyra sammanhängande områden — kartong, papperskassar, företagstryck och specialprojekt. Varje uppdrag hanteras med samma krav på material, konstruktion och leverans. Välj disciplin för fullt scope, spec och ledtid."
       },
       "cta": {
         "eyebrow": "Nästa steg",
@@ -148,7 +150,7 @@
           "items": {
             "luxuryShopping": {
               "title": "Laminerad luxury shopping bag",
-              "description": "Matt eller soft-touch laminerad kraftkartong med hetfolie och bomullsband. Förstärkt topp, förstärkt botten — byggd för upprepad användning och hängning i vardagsrummet."
+              "description": "Matt eller soft-touch laminerad kraftkartong med hetfolie och bomullsband. Förstärkt topp, förstärkt botten — byggd för upprepad användning, inte engångsbärighet."
             },
             "gift": {
               "title": "Presentkasse",
@@ -251,11 +253,11 @@
             },
             "stationery": {
               "title": "Brevpapper & kuvert",
-              "description": "Letterheads, visitkort och kuvert i matchande grade. Vi arbetar med FSC-papper som standard, med eller utan präglad logotyp."
+              "description": "Brevpapper, visitkort och kuvert i matchande grade. Vi arbetar med FSC-papper som standard, med eller utan präglad logotyp."
             },
             "event": {
               "title": "Event- & mässmaterial",
-              "description": "Roll-ups, skyltar, programblad och badges för lanseringar och event. Kort leadtime — fast produktionstid på 10 arbetsdagar."
+              "description": "Roll-ups, skyltar, programblad och badges för lanseringar och event. Kort ledtid — fast produktionstid på 10 arbetsdagar."
             }
           }
         },
@@ -289,7 +291,7 @@
             "small": {
               "range": "250–1 500 enheter",
               "label": "Kort serie",
-              "note": "Lansering, event, limiterade kampanjer. 10–15 arbetsdagars leadtime."
+              "note": "Lansering, event, limiterade kampanjer. 10–15 arbetsdagars ledtid."
             },
             "medium": {
               "range": "1 500–8 000 enheter",
@@ -299,7 +301,7 @@
             "large": {
               "range": "8 000+ enheter",
               "label": "Storserie",
-              "note": "Internbruk, global rollout, retail-kampanj. Offertbaserad leadtime — vi planerar produktionen tillsammans."
+              "note": "Internbruk, global rollout, retail-kampanj. Offertbaserad ledtid — vi planerar produktionen tillsammans."
             }
           },
           "disclaimer": "Priser bekräftas först efter signerad spec och provtryck — ingen fast katalog."
@@ -351,7 +353,7 @@
             },
             "seeding": {
               "title": "Influencer seeding-kit",
-              "description": "Mindre serier (50–500), högre visual-per-enhet. Ofta personaliserade etiketter och handstoppade innersidor. Levereras med logistikstöd direkt till mottagare."
+              "description": "Mindre serier (50–500), högre visuell detaljnivå per enhet. Ofta personaliserade etiketter och handstoppade innersidor. Levereras med logistikstöd direkt till mottagare."
             },
             "eventKits": {
               "title": "Event- & utställningskit",
@@ -375,7 +377,7 @@
   },
   "home": {
     "hero": {
-      "eyebrow": "Tryckeri & Förpackning · Sedan 2019",
+      "eyebrow": "Tryck & Förpackning · Sedan 2019",
       "headline": "Premiumförpackningar för varumärken som betyder något.",
       "subtitle": "Från Stockholm till tolv länder. Vi designar och producerar presentkartonger, papperskassar och företagstryck för premium- och lyxvarumärken.",
       "secondary": "Se våra arbeten",
@@ -430,7 +432,8 @@
     "viewProject": "Se projekt",
     "empty": "Inga projekt matchar valt filter.",
     "filter": {
-      "all": "Alla"
+      "all": "Alla",
+      "ariaLabel": "Filtrera projekt efter disciplin"
     },
     "cta": {
       "eyebrow": "Ett eget projekt?",
@@ -540,7 +543,7 @@
   "process": {
     "meta": {
       "title": "Process",
-      "description": "Så arbetar AW AB — fem steg från brief till levererad pall. Typiska ledtider 8–14 veckor. FAQ om lead time, volym, certifieringar, NDA och prissättning."
+      "description": "Så arbetar AW AB — fem steg från brief till levererad pall. Typiska ledtider 8–14 veckor. FAQ om ledtid, volym, certifieringar, NDA och prissättning."
     },
     "hero": {
       "eyebrow": "Process",
@@ -775,7 +778,7 @@
         },
         "proposal": {
           "title": "Konkret förslag",
-          "description": "Fast offert med alla volym-break, leadtime och leveransdetaljer — ingen standardmall."
+          "description": "Fast offert med alla volym-break, ledtid och leveransdetaljer — ingen standardmall."
         },
         "scoping": {
           "title": "Scoping-möte vid behov",

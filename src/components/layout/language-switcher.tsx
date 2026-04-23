@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { useTransition } from "react";
 
@@ -17,6 +17,7 @@ export function LanguageSwitcher({
   tone = "ink",
   className,
 }: LanguageSwitcherProps) {
+  const t = useTranslations("header");
   const current = useLocale() as Locale;
   const pathname = usePathname();
   const router = useRouter();
@@ -47,7 +48,7 @@ export function LanguageSwitcher({
         isPending && "pointer-events-none opacity-60",
         className,
       )}
-      aria-label="Language"
+      aria-label={t("languageSwitcher")}
     >
       {routing.locales.map((locale, i) => {
         const isActive = locale === current;

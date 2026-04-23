@@ -57,7 +57,11 @@ export function Header() {
         transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="container-edge flex h-full items-center justify-between gap-8">
-          <Logo tone="ink" size={scrolled ? "sm" : "md"} />
+          <Logo
+            tone="ink"
+            size={scrolled ? "sm" : "md"}
+            ariaLabel={t("header.homeLink")}
+          />
 
           {/* Desktop nav — shows at xl+ only. Below that (tablets and small
               laptops, where 5 nav items + logo + LS + CTA would wrap or

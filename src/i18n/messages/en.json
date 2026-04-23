@@ -15,7 +15,9 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "close": "Close",
-    "menuLabel": "Menu"
+    "menuLabel": "Menu",
+    "languageSwitcher": "Language",
+    "homeLink": "AW AB — Home"
   },
   "services": {
     "overview": {
@@ -430,7 +432,8 @@
     "viewProject": "View project",
     "empty": "No projects match the current filter.",
     "filter": {
-      "all": "All"
+      "all": "All",
+      "ariaLabel": "Filter projects by discipline"
     },
     "cta": {
       "eyebrow": "Your own project?",

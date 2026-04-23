@@ -84,7 +84,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           }
         >
           <div className="container-edge flex h-24 shrink-0 items-center justify-between">
-            <Logo tone="paper" href="/" />
+            <Logo tone="paper" href="/" ariaLabel={t("header.homeLink")} />
             <button
               type="button"
               onClick={onClose}
